@@ -149,6 +149,8 @@ deploy-bicep:
 			'searchLocation=$(search_location)' \
 		--template-file cicd/bicep/main.bicep \
 	 	--name $(name_sanitized)
+		--verbose
+
 
 deploy-post:
 	@$(MAKE) copy-public \
