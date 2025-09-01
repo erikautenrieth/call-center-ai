@@ -5,7 +5,7 @@
 4. Buy a phone number
     - Allow inbound and outbound communication
     - Enable voice (required) and SMS (optional) capabilities
-5. Copy Phonenumber in config.yaml
+5. Copy Phone number in config.yaml
 
 6. ```az login```
 
