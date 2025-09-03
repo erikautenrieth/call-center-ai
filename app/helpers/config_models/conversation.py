@@ -36,14 +36,14 @@ class LanguageModel(BaseModel):
     Manage language for the workflow.
     """
 
-    default_short_code: str = "fr-FR"
+    default_short_code: str = "de-DE"
     # Voice list from Azure TTS
     # See: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts
     availables: list[LanguageEntryModel] = [
         LanguageEntryModel(
-            pronunciations_en=["French", "FR", "France"],
-            short_code="fr-FR",
-            voice="fr-FR-VivienneMultilingualNeural",
+            pronunciations_en=["German", "DE", "Germany"],
+            short_code="de-DE",
+            voice="de-DE-SeraphinaMultilingualNeura",
         ),
         LanguageEntryModel(
             pronunciations_en=["English", "EN", "United States"],
