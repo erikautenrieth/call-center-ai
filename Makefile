@@ -155,8 +155,8 @@ deploy-post:
 	@$(MAKE) copy-public \
 		name=$(blob_storage_public_name)
 
-	@$(MAKE) twilio-register \
-		endpoint=$(app_url)
+#	@$(MAKE) twilio-register \
+#		endpoint=$(app_url)
 
 	@$(MAKE) logs name=$(name_sanitized)
 
@@ -178,10 +178,10 @@ logs:
 		--resource-group $(name) \
 		--tail 100
 
-twilio-register:
-	@echo "⚙️ Registering Twilio webhook..."
-	twilio phone-numbers:update $(twilio_phone_number) \
-		--sms-url $(endpoint)/twilio/sms
+#twilio-register:
+#	@echo "⚙️ Registering Twilio webhook..."
+#	twilio phone-numbers:update $(twilio_phone_number) \
+#		--sms-url $(endpoint)/twilio/sms
 
 copy-public:
 	@echo "📦 Copying public resources..."
