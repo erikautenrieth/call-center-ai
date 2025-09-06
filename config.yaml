@@ -32,13 +32,13 @@ conversation:
       - name: alternative_telefonnummer
         type: text
       - name: direkt_zahlung
-        type: boolean
+        type: text
       - name: ratenzahlung
-        type: boolean
+        type: text
       - name: ratenhoehe
-        type: number
+        type: text
       - name: zahlungsbeginn
-        type: date
+        type: datetime
 
 communication_services:
   phone_number: "+18662356751" # Phone number purshased from Communication Services
