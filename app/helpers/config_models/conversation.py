@@ -43,7 +43,7 @@ class LanguageModel(BaseModel):
         LanguageEntryModel(
             pronunciations_en=["German", "DE", "Germany"],
             short_code="de-DE",
-            voice="de-DE-SeraphinaMultilingualNeura",
+            voice="de-DE-ConradNeural",
         ),
         LanguageEntryModel(
             pronunciations_en=["English", "EN", "United States"],
