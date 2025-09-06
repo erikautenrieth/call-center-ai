@@ -30,7 +30,7 @@ conversation:
       - name: aktenzeichen
         type: text
       - name: alternative_telefonnummer
-        type: text
+        type: phone_number
       - name: direkt_zahlung
         type: text
       - name: ratenzahlung
