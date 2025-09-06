@@ -1,0 +1,26 @@
+conversation:
+  initiate:
+    agent_phone_number: "+4915123706443" # Phone number the bot will transfer the call to if customer asks for a human agent
+    bot_company: Contoso
+    bot_name: Seraphina
+    lang:
+      default_short_code: de-DE
+      availables:
+        - pronunciations_en: ["German", "DE", "Germany"]
+          short_code: de-DE
+          voice: de-DE-SeraphinaMultilingualNeural
+        - pronunciations_en: ["Arabic", "SA", "Saudi Arabia"]
+          short_code: ar-SA
+          voice: ar-SA-HamedNeural
+        - pronunciations_en: ["Russian", "RU", "Russia"]
+          short_code: ru-RU
+          voice: ru-RU-SvetlanaNeural
+
+communication_services:
+  phone_number: "+18662356751" # Phone number purshased from Communication Services
+
+sms: {}
+
+prompts:
+  llm: {}
+  tts: {}

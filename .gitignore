@@ -288,7 +288,7 @@ $RECYCLE.BIN/
 *.sqlite*
 
 # Local app config file
-config*.yaml
+#config*.yaml
 !config-*-example.yaml
 
 # Tests default environment
