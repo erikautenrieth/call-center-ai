@@ -2,19 +2,16 @@ conversation:
   initiate:
     agent_phone_number: "+4915123706443" # Phone number the bot will transfer the call to if customer asks for a human agent
     bot_company: Mindfields AG
-    bot_name: Conrad
+    bot_name: Florian
     lang:
       default_short_code: de-DE
       availables:
         - pronunciations_en: ["German", "DE", "Germany"]
           short_code: de-DE
-          voice: de-DE-ConradNeura
-        - pronunciations_en: ["Arabic", "SA", "Saudi Arabia"]
-          short_code: ar-SA
-          voice: ar-SA-HamedNeural
-        - pronunciations_en: ["Russian", "RU", "Russia"]
-          short_code: ru-RU
-          voice: ru-RU-DmitryNeural
+          voice: de-DE-FlorianMultilingualNeural
+        - pronunciations_en: ["English", "EN", "United States"]
+          short_code: en-US
+          voice: en-US-AlloyTurboMultilingualNeural
     task: |
       Helfe dem Kunden mit seinem Anliegen bezüglich einer offenen Forderung der PARKcontrol24. Sammle die notwendigen Informationen, um eine Lösung zu finden, idealerweise durch eine standardisierte Ratenzahlung. Bleibe dabei stets freundlich, professionell und lösungsorientiert.
       Ziel ist es, eingehende Anrufe von Schuldnern aufzunehmen, korrekt zu qualifizieren und unter Beachtung rechtlicher und psychologischer Rahmenbedingungen eine lösungsorientierte Gesprächsführung sicherzustellen.
