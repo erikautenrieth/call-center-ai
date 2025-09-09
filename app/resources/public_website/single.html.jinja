@@ -181,30 +181,42 @@ Claim ({{ call.initiate.phone_number }})
     <h2 class="text-lg px-4 pt-4">📁&nbsp;&nbsp;Details</h2>
     <table class="table-auto w-full">
       <tbody>
-        {%
-          set details = [
+      {%
+        set details = [
             {
-              'title': 'Date',
-              'value': call.claim.incident_date_time.strftime('%a %d %b %Y, %H:%M (%Z)') if call.claim.incident_date_time else 'N/A'
-            },
-            {
-              'title': 'Location',
-              'value': call.claim.incident_location or 'N/A'
-            },
-            {
-              'title': 'Policy',
-              'value': call.claim.policy_number or 'N/A'
-            },
-            {
-              'title': 'Contact',
-              'value': (call.claim.policyholder_email or 'N/A') ~ ', ' ~ (call.claim.policyholder_phone or 'N/A')
-            },
-            {
-              'title': 'Phone used',
-              'value': call.initiate.phone_number or 'N/A'
-            }
-          ]
-        %}
+            'title': 'Name',
+            'value': ((call.claim.vorname or '') ~ ' ' ~ (call.claim.nachname or '')).strip() or 'N/A'
+          },
+          {
+            'title': 'Kennzeichen',
+            'value': call.claim.kennzeichen or 'N/A'
+          },
+          {
+            'title': 'Aktenzeichen',
+            'value': call.claim.aktenzeichen or 'N/A'
+          },
+          {
+            'title': 'Alternative Telefonnummer',
+            'value': call.claim.alternative_telefonnummer or 'N/A'
+          },
+          {
+            'title': 'Direktzahlung',
+            'value': call.claim.direkt_zahlung or 'N/A'
+          },
+          {
+            'title': 'Ratenzahlung',
+            'value': call.claim.ratenzahlung or 'N/A'
+          },
+          {
+            'title': 'Ratenhöhe',
+            'value': call.claim.ratenhoehe or 'N/A'
+          },
+          {
+            'title': 'Zahlungsbeginn',
+            'value': call.claim.zahlungsbeginn.strftime('%a %d %b %Y, %H:%M (%Z)') if call.claim.zahlungsbeginn else 'N/A'
+          }
+        ]
+      %}
         <!-- Disable shadow to avoid overlapping with the table border -->
         {% for detail in details %}
         <tr {% if not loop.last %}class="border-b border-neutral-200/60 dark:border-neutral-700/60"{% endif %}>
