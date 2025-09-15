@@ -12,6 +12,7 @@
 7. ```make deploy name=my-rg```
 
 6. Speicherkonto (Rechte setzen)
+    - Besitzer von Speicherblobdaten
     - Zugriffssteuerung (IAM) - Rollen - Besitzer -> Hinzufügen
 
 #### Logs
