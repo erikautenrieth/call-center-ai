@@ -60,8 +60,6 @@ curl \
 
 A French demo is avaialble on YouTube. Do not hesitate to watch the demo in x1.5 speed to get a quick overview of the project. Voice is hesitant on purpose to show the bot can handle it. All the infrastructure is deployed on Azure, mostly in serverless mode. Provisionning of the LLM resources can be done to reduce the latency.
 
-[![French demo](https://img.youtube.com/vi/i_qhNdUUxSI/maxresdefault.jpg)](https://youtube.com/watch?v=i_qhNdUUxSI)
-
 Main interactions shown in the demo:
 
 1. User calls the call center
@@ -69,55 +67,6 @@ Main interactions shown in the demo:
 3. The bot stores conversation, claim and todo list in the database
 
 Extract of the data stored during the call:
-
-```json
-{
-  "claim": {
-    "incident_description": "Collision avec un autre véhicule, voiture dans le fossé, pas de blessés",
-    "incident_location": "Nationale 17",
-    "involved_parties": "Dujardin, Madame Lesné",
-    "policy_number": "DEC1748"
-  },
-  "messages": [
-    {
-      "created_at": "2024-12-10T15:51:04.566727Z",
-      "action": "talk",
-      "content": "Non, je pense que c'est pas mal. Vous avez répondu à mes questions et là j'attends la dépaneuse. Merci beaucoup.",
-      "persona": "human",
-      "style": "none",
-      "tool_calls": []
-    },
-    {
-      "created_at": "2024-12-10T15:51:06.040451Z",
-      "action": "talk",
-      "content": "Je suis ravi d'avoir pu vous aider! Si vous avez besoin de quoi que ce soit d'autre, n'hésitez pas à nous contacter. Je vous souhaite une bonne journée et j'espère que tout se passera bien avec la dépanneuse. Au revoir!",
-      "persona": "assistant",
-      "style": "none",
-      "tool_calls": []
-    }
-  ],
-  "next": {
-    "action": "case_closed",
-    "justification": "The customer has provided all necessary information for the insurance claim, and a reminder has been set for a follow-up call. The customer is satisfied with the assistance provided and is waiting for the tow truck. The case can be closed for now."
-  },
-  "reminders": [
-    {
-      "created_at": "2024-12-10T15:50:09.507903Z",
-      "description": "Rappeler le client pour faire le point sur l'accident et l'avancement du dossier.",
-      "due_date_time": "2024-12-11T14:30:00",
-      "owner": "assistant",
-      "title": "Rappel client sur l'accident"
-    }
-  ],
-  "synthesis": {
-    "long": "During our call, you reported an accident involving your vehicle on the Nationale 17. You mentioned that there were no injuries, but both your car and the other vehicle ended up in a ditch. The other party involved is named Dujardin, and your vehicle is a 4x4 Ford. I have updated your claim with these details, including the license plates: yours is U837GE and the other vehicle's is GA837IA. A reminder has been set for a follow-up call tomorrow at 14:30 to discuss the progress of your claim. If you need further assistance, please feel free to reach out.",
-    "satisfaction": "high",
-    "short": "the accident on Nationale 17",
-    "improvement_suggestions": "To improve the customer experience, it would be beneficial to ensure that the call connection is stable to avoid interruptions. Additionally, providing a clear step-by-step guide on what information is needed for the claim could help streamline the process and reduce any confusion for the customer."
-  }
-  ...
-}
-```
 
 ### User report after the call
 
