@@ -35,7 +35,7 @@ conversation:
         type: datetime
 
 communication_services:
-  phone_number: "+33801150221" # Phone number purshased from Communication Services
+  phone_number: "+4580719060" # Phone number purshased from Communication Services
 
 sms: {}
 
@@ -108,5 +108,5 @@ prompts:
       # Support status
       {claim}
 
-      # Reminders
+      # Offene Punkte
       {reminders}
