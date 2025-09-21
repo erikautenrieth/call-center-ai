@@ -16,8 +16,8 @@ from azure.communication.callautomation import (
     MediaStreamingAudioChannelType,
     MediaStreamingContentType,
     MediaStreamingOptions,
-    MediaStreamingTransportType,
     PhoneNumberIdentifier,
+    StreamingTransportType,
 )
 from azure.communication.callautomation.aio import CallAutomationClient
 from azure.core.credentials import AzureKeyCredential
@@ -409,7 +409,7 @@ async def call_post(request: Request) -> CallGetModel:
         audio_channel_type=MediaStreamingAudioChannelType.UNMIXED,
         content_type=MediaStreamingContentType.AUDIO,
         start_media_streaming=False,
-        transport_type=MediaStreamingTransportType.WEBSOCKET,
+        transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
     )
     call_connection_properties = await automation_client.create_call(

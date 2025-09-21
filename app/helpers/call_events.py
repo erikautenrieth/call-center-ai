@@ -12,11 +12,11 @@ from azure.communication.callautomation import (
     MediaStreamingAudioChannelType,
     MediaStreamingContentType,
     MediaStreamingOptions,
-    MediaStreamingTransportType,
     RecognitionChoice,
     RecordingChannel,
     RecordingContent,
     RecordingFormat,
+    StreamingTransportType,
 )
 from azure.communication.callautomation.aio import CallAutomationClient
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError
@@ -70,7 +70,7 @@ async def on_new_call(
         content_type=MediaStreamingContentType.AUDIO,
         enable_bidirectional=True,
         start_media_streaming=False,
-        transport_type=MediaStreamingTransportType.WEBSOCKET,
+        transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
     )
 

@@ -21,3 +21,11 @@
   --name call-center-ai \
   --resource-group yp-zq
 ```
+
+# Container registry, in UI erstellen
+
+# make build
+
+# docker push rzqycallai.azurecr.io/call-center-ai
+
+# container-app: anwendung-container: Eigenschaften

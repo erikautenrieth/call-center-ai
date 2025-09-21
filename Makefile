@@ -5,8 +5,8 @@ version_small ?= $(shell $(MAKE) --silent version)
 tunnel_name := call-center-ai-$(shell hostname | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
 tunnel_url ?= $(shell res=$$(devtunnel show $(tunnel_name) | grep -o 'http[s]*://[^ ]*' | xargs) && echo $${res%/})
 # Container configuration
-container_name := ghcr.io/clemlesne/call-center-ai
-image_version := main
+container_name := rzqycallai.azurecr.io/call-center-ai
+image_version := latest
 # App location
 # Warning: Some regions may not support all services (e.g. OpenAI models, AI Search) or capabilities (e.g. Cognitive Services TTS voices). Those regions have been tested and are known to work. If you encounter issues, please refer to the Azure documentation for the latest information, or try deploying with default locations.
 cognitive_communication_location := westeurope
@@ -121,10 +121,10 @@ build:
 	DOCKER_BUILDKIT=1 docker build \
 		--build-arg VERSION=$(version_full) \
 		--file cicd/Dockerfile \
-		--platform linux/amd64,linux/arm64 \
 		--tag $(container_name):$(version_small) \
 		--tag $(container_name):latest \
 		.
+# --platform linux/amd64,linux/arm64
 
 deploy:
 	$(MAKE) deploy-bicep
@@ -155,7 +155,7 @@ deploy-post:
 	@$(MAKE) copy-public \
 		name=$(blob_storage_public_name)
 
-#	@$(MAKE) twilio-register \
+#	@$(MAKE) twilio-register
 #		endpoint=$(app_url)
 
 	@$(MAKE) logs name=$(name_sanitized)
