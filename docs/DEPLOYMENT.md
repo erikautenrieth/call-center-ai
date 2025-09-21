@@ -22,10 +22,22 @@
   --resource-group yp-zq
 ```
 
+## Build Container
+
 # Container registry, in UI erstellen
+
+# sed -i 's/\r$//' cicd/version/version.sh
+
+# chmod +x cicd/version/version.sh
 
 # make build
 
-# docker push rzqycallai.azurecr.io/call-center-ai
+# az acr login --name zquzcallai
+
+# docker push zquzcallai.azurecr.io/call-center-ai
 
 # container-app: anwendung-container: Eigenschaften
+
+## Befehle
+
+az cognitiveservices account list --subscription d058a8a3-67c8-4953-aaa8-2ee95a93bd36 --output table
