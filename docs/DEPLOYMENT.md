@@ -26,23 +26,42 @@
 
 # Container registry, in UI erstellen
 
-# sed -i 's/\r$//' cicd/version/version.sh
+ sed -i 's/\r$//' cicd/version/version.sh
 
 # chmod +x cicd/version/version.sh
 
-# make build
+ make build
 
-# az acr login --name zquzcallai
+ az acr login --name zquzcallai
 
-# docker push zquzcallai.azurecr.io/call-center-ai
+ docker push zquzcallai.azurecr.io/call-center-ai
 
 # container-app: anwendung-container: Eigenschaften
 
 ## Befehle
 
+## show services
+
 az cognitiveservices account list --subscription d058a8a3-67c8-4953-aaa8-2ee95a93bd36 --output table
+
+## OpenAi model list
 
 az cognitiveservices account list-models \
   --name zq-uz-swedencentral-openai \
   --resource-group zq-uz \
   --output table
+
+## Debug deploy
+
+az deployment sub create \
+  --location swedencentral \
+  --parameters \
+    cognitiveCommunicationLocation=westeurope \
+    imageVersion=latest \
+    instance=zq-uz \
+    openaiLocation=swedencentral \
+    promptContentFilter=true \
+    searchLocation=francecentral \
+  --template-file cicd/bicep/main.bicep \
+  --name zq-uz \
+  --debug
