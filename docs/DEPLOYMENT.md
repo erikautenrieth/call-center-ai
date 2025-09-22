@@ -46,5 +46,3 @@ az cognitiveservices account list-models \
   --name zq-uz-swedencentral-openai \
   --resource-group zq-uz \
   --output table
-
-export GHCR_TOKEN=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
