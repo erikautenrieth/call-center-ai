@@ -8,9 +8,9 @@ param imageVersion string = 'main'
 param instance string
 param llmFastContext int = 128000
 param llmFastDeploymentType string = 'GlobalStandard' // Pay-as-you-go in all regions
-param llmFastModel string = 'gpt-4.1-mini'
+param llmFastModel string = 'gpt-5-nano'
 param llmFastQuota int = 150
-param llmFastVersion string = '2025-04-14'
+param llmFastVersion string = '2025-08-07'
 param llmSlowContext int = 128000
 param llmSlowDeploymentType string = 'GlobalStandard' // Pay-as-you-go in all regions
 param llmSlowModel string = 'gpt-5-mini'
