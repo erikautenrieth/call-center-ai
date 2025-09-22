@@ -41,3 +41,10 @@
 ## Befehle
 
 az cognitiveservices account list --subscription d058a8a3-67c8-4953-aaa8-2ee95a93bd36 --output table
+
+az cognitiveservices account list-models \
+  --name zq-uz-swedencentral-openai \
+  --resource-group zq-uz \
+  --output table
+
+export GHCR_TOKEN=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

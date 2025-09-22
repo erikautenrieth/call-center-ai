@@ -1,0 +1,1371 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.37.4.10188",
+      "templateHash": "6069471381022152003"
+    }
+  },
+  "parameters": {
+    "cognitiveCommunicationLocation": {
+      "type": "string"
+    },
+    "embeddingDeploymentType": {
+      "type": "string",
+      "defaultValue": "Standard"
+    },
+    "embeddingDimensions": {
+      "type": "int",
+      "defaultValue": 3072
+    },
+    "embeddingModel": {
+      "type": "string",
+      "defaultValue": "text-embedding-3-large"
+    },
+    "embeddingQuota": {
+      "type": "int",
+      "defaultValue": 50
+    },
+    "embeddingVersion": {
+      "type": "string",
+      "defaultValue": "1"
+    },
+    "imageVersion": {
+      "type": "string",
+      "defaultValue": "main"
+    },
+    "instance": {
+      "type": "string"
+    },
+    "llmFastContext": {
+      "type": "int",
+      "defaultValue": 128000
+    },
+    "llmFastDeploymentType": {
+      "type": "string",
+      "defaultValue": "GlobalStandard"
+    },
+    "llmFastModel": {
+      "type": "string",
+      "defaultValue": "gpt-4.1-nano"
+    },
+    "llmFastQuota": {
+      "type": "int",
+      "defaultValue": 150
+    },
+    "llmFastVersion": {
+      "type": "string",
+      "defaultValue": "2025-04-14"
+    },
+    "llmSlowContext": {
+      "type": "int",
+      "defaultValue": 128000
+    },
+    "llmSlowDeploymentType": {
+      "type": "string",
+      "defaultValue": "GlobalStandard"
+    },
+    "llmSlowModel": {
+      "type": "string",
+      "defaultValue": "gpt-4.1-mini"
+    },
+    "llmSlowQuota": {
+      "type": "int",
+      "defaultValue": 50
+    },
+    "llmSlowVersion": {
+      "type": "string",
+      "defaultValue": "2025-04-14"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[deployment().location]"
+    },
+    "openaiLocation": {
+      "type": "string"
+    },
+    "promptContentFilter": {
+      "type": "bool",
+      "defaultValue": true
+    },
+    "searchLocation": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "tags": {
+      "application": "call-center-ai",
+      "instance": "[parameters('instance')]",
+      "managed_by": "Bicep",
+      "sources": "https://github.com/clemlesne/call-center-ai",
+      "version": "[parameters('imageVersion')]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "[parameters('instance')]",
+      "location": "[parameters('location')]",
+      "tags": "[variables('tags')]"
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('instance')]",
+      "resourceGroup": "[parameters('instance')]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "cognitiveCommunicationLocation": {
+            "value": "[parameters('cognitiveCommunicationLocation')]"
+          },
+          "embeddingDeploymentType": {
+            "value": "[parameters('embeddingDeploymentType')]"
+          },
+          "embeddingDimensions": {
+            "value": "[parameters('embeddingDimensions')]"
+          },
+          "embeddingModel": {
+            "value": "[parameters('embeddingModel')]"
+          },
+          "embeddingQuota": {
+            "value": "[parameters('embeddingQuota')]"
+          },
+          "embeddingVersion": {
+            "value": "[parameters('embeddingVersion')]"
+          },
+          "imageVersion": {
+            "value": "[parameters('imageVersion')]"
+          },
+          "llmFastContext": {
+            "value": "[parameters('llmFastContext')]"
+          },
+          "llmFastDeploymentType": {
+            "value": "[parameters('llmFastDeploymentType')]"
+          },
+          "llmFastModel": {
+            "value": "[parameters('llmFastModel')]"
+          },
+          "llmFastQuota": {
+            "value": "[parameters('llmFastQuota')]"
+          },
+          "llmFastVersion": {
+            "value": "[parameters('llmFastVersion')]"
+          },
+          "llmSlowContext": {
+            "value": "[parameters('llmSlowContext')]"
+          },
+          "llmSlowDeploymentType": {
+            "value": "[parameters('llmSlowDeploymentType')]"
+          },
+          "llmSlowModel": {
+            "value": "[parameters('llmSlowModel')]"
+          },
+          "llmSlowQuota": {
+            "value": "[parameters('llmSlowQuota')]"
+          },
+          "llmSlowVersion": {
+            "value": "[parameters('llmSlowVersion')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "openaiLocation": {
+            "value": "[parameters('openaiLocation')]"
+          },
+          "promptContentFilter": {
+            "value": "[parameters('promptContentFilter')]"
+          },
+          "searchLocation": {
+            "value": "[parameters('searchLocation')]"
+          },
+          "tags": {
+            "value": "[variables('tags')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.37.4.10188",
+              "templateHash": "3022149636811503271"
+            }
+          },
+          "parameters": {
+            "cognitiveCommunicationLocation": {
+              "type": "string"
+            },
+            "embeddingDeploymentType": {
+              "type": "string"
+            },
+            "embeddingDimensions": {
+              "type": "int"
+            },
+            "embeddingModel": {
+              "type": "string"
+            },
+            "embeddingQuota": {
+              "type": "int"
+            },
+            "embeddingVersion": {
+              "type": "string"
+            },
+            "imageVersion": {
+              "type": "string"
+            },
+            "llmFastContext": {
+              "type": "int"
+            },
+            "llmFastDeploymentType": {
+              "type": "string"
+            },
+            "llmFastModel": {
+              "type": "string"
+            },
+            "llmFastQuota": {
+              "type": "int"
+            },
+            "llmFastVersion": {
+              "type": "string"
+            },
+            "llmSlowContext": {
+              "type": "int"
+            },
+            "llmSlowDeploymentType": {
+              "type": "string"
+            },
+            "llmSlowModel": {
+              "type": "string"
+            },
+            "llmSlowQuota": {
+              "type": "int"
+            },
+            "llmSlowVersion": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string"
+            },
+            "openaiLocation": {
+              "type": "string"
+            },
+            "promptContentFilter": {
+              "type": "bool"
+            },
+            "searchLocation": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "object"
+            }
+          },
+          "variables": {
+            "copy": [
+              {
+                "name": "containerAppScaleRules",
+                "count": "[length(createArray(format('call-{0}', variables('phonenumberSanitized')), format('post-{0}', variables('phonenumberSanitized')), format('sms-{0}', variables('phonenumberSanitized')), format('trainings-{0}', variables('phonenumberSanitized'))))]",
+                "input": {
+                  "name": "[format('queue-{0}', createArray(format('call-{0}', variables('phonenumberSanitized')), format('post-{0}', variables('phonenumberSanitized')), format('sms-{0}', variables('phonenumberSanitized')), format('trainings-{0}', variables('phonenumberSanitized')))[copyIndex('containerAppScaleRules')])]",
+                  "azureQueue": {
+                    "accountName": "[replace(toLower(variables('prefix')), '-', '')]",
+                    "identity": "system",
+                    "queueLength": 5,
+                    "queueName": "[createArray(format('call-{0}', variables('phonenumberSanitized')), format('post-{0}', variables('phonenumberSanitized')), format('sms-{0}', variables('phonenumberSanitized')), format('trainings-{0}', variables('phonenumberSanitized')))[copyIndex('containerAppScaleRules')]]"
+                  }
+                }
+              }
+            ],
+            "$fxv#0": {
+              "conversation": {
+                "initiate": {
+                  "agent_phone_number": "+4915123706443",
+                  "bot_company": "Mindfields AG",
+                  "bot_name": "Florian",
+                  "lang": {
+                    "default_short_code": "de-DE",
+                    "availables": [
+                      {
+                        "pronunciations_en": [
+                          "German",
+                          "DE",
+                          "Germany"
+                        ],
+                        "short_code": "de-DE",
+                        "voice": "de-DE-FlorianMultilingualNeural"
+                      }
+                    ]
+                  },
+                  "task": "Helfe dem Kunden mit seinem Anliegen bezüglich einer offenen Forderung der PARKcontrol24. Sammle die notwendigen Informationen, um eine Lösung zu finden, idealerweise durch eine standardisierte Ratenzahlung. Bleibe dabei stets freundlich, professionell und lösungsorientiert.\nZiel ist es, eingehende Anrufe von Schuldnern aufzunehmen, korrekt zu qualifizieren und unter Beachtung rechtlicher und psychologischer Rahmenbedingungen eine lösungsorientierte Gesprächsführung sicherzustellen.\n"
+                },
+                "default_initiate": {
+                  "claim": [
+                    {
+                      "name": "vorname",
+                      "type": "text"
+                    },
+                    {
+                      "name": "nachname",
+                      "type": "text"
+                    },
+                    {
+                      "name": "kennzeichen",
+                      "type": "text"
+                    },
+                    {
+                      "name": "aktenzeichen",
+                      "type": "text"
+                    },
+                    {
+                      "name": "alternative_telefonnummer",
+                      "type": "phone_number"
+                    },
+                    {
+                      "name": "direkt_zahlung",
+                      "type": "text"
+                    },
+                    {
+                      "name": "ratenzahlung",
+                      "type": "text"
+                    },
+                    {
+                      "name": "ratenhoehe",
+                      "type": "text"
+                    },
+                    {
+                      "name": "zahlungsbeginn",
+                      "type": "datetime"
+                    }
+                  ]
+                }
+              },
+              "communication_services": {
+                "phone_number": "+18882818144"
+              },
+              "sms": {},
+              "prompts": {
+                "tts": {
+                  "hello_tpl": [
+                    "Hallo ich bin {bot_name}, von {bot_company}! Ich arbeite im Inkassozentrum der MINDfields AG im Auftrag der PARKcontrol24. Wie kann ich Ihnen helfen?\n",
+                    "Hi, ich bin {bot_name} von {bot_company}. Ich bin hier, um zu helfen.\nWie darf ich Ihnen helfen?\n"
+                  ]
+                },
+                "llm": {
+                  "default_system_tpl": "Der Assistent trägt den Namen {bot_name} und ist in einem Callcenter für die Firma {bot_company} als Experte mit 20 Jahren Erfahrung im Forderungsmanagement und Inkasso-Service.\n\n# Context\nHeute ist {date}. Der Kunde ruft an von {phone_number}. Die Nummer des Callcenters ist {bot_phone_number}.\n",
+                  "chat_system_tpl": "# Objective\nSchuldner eindeutig identifizieren (z. B. über Aktenzeichen, Kfz-Kennzeichen, Name). Offene Forderung bestätigen und Ursprung der Forderung erklären.\nLösungen anbieten, idealerweise durch eine standardisierte Ratenzahlung. Alle relevanten Informationen für eine verbindliche Vereinbarung erfassen (z. B. Ratenhöhe, Zahlungsbeginn).\nGespräch mit einem klaren Ergebnis beenden (Zahlung, Vereinbarung, Rückruf). Speichere die claims zuverässsig während des gesprächs ab.\n\n# Rules\n- Immer in {default_lang} antworten, nur wenn der Kunde explizit eine andere Sprache wünscht, kann auf Englisch, Arabisch oder Russisch gewechselt werden\n- Keine Themen außerhalb des Inkassoverfahrens behandeln\n- Immer professionell, verbindlich, klar, freundlich und sachlich kommunizieren\n- Keine hypothetischen Aussagen oder Konjunktiv (\"könnte\", \"würde\") verwenden\n- Keine Floskeln verwenden; kurze, klare und zielführende Aussagen machen\n- Keine Diskussion über die Höhe der Forderung – diese ist festgelegt\n- Keine Teilzahlungen anbieten – nur Einmalzahlung oder strukturierte Ratenzahlung\n- Gesprächsdauer idealerweise unter 5 Minuten\n- Bei Eskalation oder aggressivem Verhalten sachlich bleiben\n- Immer in der Rolle bleiben,keine Hinweise auf KI oder automatisierte Systeme, außer wenn konkret gefragt\n\n\n# Abzufragende Kundendaten\n- Frage die Kundendaten nacheinander ab. Merke sie dir und fasse sie am Ende des Gesprächs zusammen.\n- Bestätige die Richtigkeit der Daten.\n- Kfz-Kennzeichen oder Aktenzeichen\n- Vorname und Nachname\n\n# Genereller Gesprächsablauf\n1. Nehme Informationen auf, um die Identität des Kunden zu kennen (z.B. Name, Kfz-Kennzeichen, Aktenzeichen)\n2. Sammle Details zum Incasso-Problem oder zur Anfrage, um die Situation zu verstehen (z.B. Beschreibung, Standort)\n3. Biete erste Schritte zur Fehlersuche oder Lösungen an\n4. Sammle zusätzliche Informationen, falls erforderlich (z.B. Fehlermeldungen, Screenshots)\n5. Sei proaktiv und erstelle Erinnerungen für Follow-ups oder weitere Unterstützung\n6. Nehme Kundendaten als reminders auf und merke sie dir.\n7. Bestätigung der Vereinbarung + Abschied je nach Tageszeit\n\n# Psychologische Leitprinzipien\n1. Empathie + Führung: Schuldner ernst nehmen, aber klar führen.\n2. Erleichterung: Jede Lösung = Entlastung („Thema vom Tisch“).\n3. Fairness-Framing: Du bist Helfer, nicht Druckmacher.\n4. Gewinner-Gefühl: Schuldner denkt am Ende: „Gut, dass ich angerufen habe.“\n5. Illusion of Choice: Immer mindestens zwei Optionen anbieten, beide führen zur Lösung.\n6. Loss Aversion: Hinweis, dass Nichtstun teurer/aufwendiger wäre.\n7. Positive Emotion: Lösung = Sicherheit + Ruhe.\n\n# Sprachlogik\n1. Primärsprache: Deutsch.\n2. Optional Englisch, Arabisch, Russisch auf Nachfrage.\n3. Siezen als Standard. \"Du\" nur, wenn ausdrücklich gewünscht.\n4. Stil: nett-dominierend – freundlich, verbindlich, ohne Konjunktiv.\n5. SIMPLE: kurze, klare Sätze, 1 Option.\n6. STANDARD: sachlich, präzise, 1–2 Optionen.\n7. EXPERT: faktenorientiert, juristisch nüchtern, keine Belehrung.\n\n# Support status\n{claim}\n\n# Offene Punkte\n{reminders}\n"
+                }
+              }
+            },
+            "appName": "call-center-ai",
+            "prefix": "[deployment().name]",
+            "llmFastModelFullName": "[toLower(format('{0}-{1}', parameters('llmFastModel'), parameters('llmFastVersion')))]",
+            "llmSlowModelFullName": "[toLower(format('{0}-{1}', parameters('llmSlowModel'), parameters('llmSlowVersion')))]",
+            "embeddingModelFullName": "[toLower(format('{0}-{1}', parameters('embeddingModel'), parameters('embeddingVersion')))]",
+            "cosmosContainerName": "calls-v3",
+            "localConfig": "[variables('$fxv#0')]",
+            "phonenumberSanitized": "[replace(variables('localConfig').communication_services.phone_number, '+', '')]",
+            "aiFoundryName": "[format('{0}-{1}-foundry', variables('prefix'), parameters('openaiLocation'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.MachineLearningServices/workspaces/connections",
+              "apiVersion": "2024-10-01",
+              "name": "[format('{0}/{1}', variables('aiFoundryName'), format('{0}-connection-openai', variables('aiFoundryName')))]",
+              "properties": {
+                "authType": "AAD",
+                "category": "AzureOpenAI",
+                "isSharedToAll": true,
+                "target": "[reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))), '2024-06-01-preview').endpoint]",
+                "metadata": {
+                  "ApiType": "Azure",
+                  "ResourceId": "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', variables('aiFoundryName'))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]"
+              ]
+            },
+            {
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "apiVersion": "2023-09-01",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "retentionInDays": 30,
+                "sku": {
+                  "name": "PerGB2018"
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Insights/components",
+              "apiVersion": "2020-02-02",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "kind": "web",
+              "properties": {
+                "Application_Type": "web",
+                "WorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix'))]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.App/managedEnvironments",
+              "apiVersion": "2024-02-02-preview",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "appLogsConfiguration": {
+                  "destination": "log-analytics",
+                  "logAnalyticsConfiguration": {
+                    "customerId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix')), '2023-09-01').customerId]",
+                    "sharedKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix')), '2023-09-01').primarySharedKey]"
+                  }
+                },
+                "workloadProfiles": [
+                  {
+                    "name": "Consumption",
+                    "workloadProfileType": "Consumption"
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.App/containerApps",
+              "apiVersion": "2024-03-01",
+              "name": "redis",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "configuration": {
+                  "activeRevisionsMode": "Single",
+                  "ingress": {
+                    "external": false,
+                    "targetPort": 6379,
+                    "transport": "tcp"
+                  }
+                },
+                "environmentId": "[resourceId('Microsoft.App/managedEnvironments', variables('prefix'))]",
+                "template": {
+                  "scale": {
+                    "maxReplicas": 1,
+                    "minReplicas": 1,
+                    "rules": []
+                  },
+                  "containers": [
+                    {
+                      "image": "redis/redis-stack-server:7.4.0-v2",
+                      "name": "redis",
+                      "resources": {
+                        "cpu": "[json('0.5')]",
+                        "memory": "1Gi"
+                      },
+                      "probes": [
+                        {
+                          "type": "Startup",
+                          "tcpSocket": {
+                            "port": 6379
+                          },
+                          "initialDelaySeconds": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/managedEnvironments', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.App/containerApps",
+              "apiVersion": "2024-02-02-preview",
+              "name": "[variables('appName')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "properties": {
+                "configuration": {
+                  "activeRevisionsMode": "Single",
+                  "ingress": {
+                    "external": true,
+                    "targetPort": 8080
+                  }
+                },
+                "environmentId": "[resourceId('Microsoft.App/managedEnvironments', variables('prefix'))]",
+                "template": {
+                  "containers": [
+                    {
+                      "image": "[format('ghcr.io/erikautenrieth/call-center-ai:{0}', parameters('imageVersion'))]",
+                      "name": "call-center-ai",
+                      "env": [
+                        {
+                          "name": "CONFIG_JSON",
+                          "value": "[string(createObject('public_domain', format('https://call-center-ai.{0}', reference(resourceId('Microsoft.App/managedEnvironments', variables('prefix')), '2024-02-02-preview').defaultDomain), 'database', createObject('cosmos_db', createObject('container', variables('cosmosContainerName'), 'database', variables('appName'), 'endpoint', reference(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix')), '2024-05-15').documentEndpoint)), 'resources', createObject('public_url', reference(resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', '')), '2023-05-01').primaryEndpoints.web), 'conversation', createObject('initiate', createObject('agent_phone_number', variables('localConfig').conversation.initiate.agent_phone_number, 'bot_company', variables('localConfig').conversation.initiate.bot_company, 'bot_name', variables('localConfig').conversation.initiate.bot_name, 'lang', variables('localConfig').conversation.initiate.lang)), 'communication_services', createObject('access_key', listKeys(resourceId('Microsoft.Communication/communicationServices', variables('prefix')), '2023-06-01-preview').primaryKey, 'endpoint', reference(resourceId('Microsoft.Communication/communicationServices', variables('prefix')), '2023-06-01-preview').hostName, 'phone_number', variables('localConfig').communication_services.phone_number, 'recording_container_url', format('{0}{1}', reference(resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', '')), '2023-05-01').primaryEndpoints.blob, 'recordings'), 'resource_id', reference(resourceId('Microsoft.Communication/communicationServices', variables('prefix')), '2023-06-01-preview').immutableResourceId), 'queue', createObject('account_url', reference(resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', '')), '2023-05-01').primaryEndpoints.queue, 'call_name', format('call-{0}', variables('phonenumberSanitized')), 'post_name', format('post-{0}', variables('phonenumberSanitized')), 'sms_name', format('sms-{0}', variables('phonenumberSanitized')), 'training_name', format('trainings-{0}', variables('phonenumberSanitized'))), 'sms', variables('localConfig').sms, 'cognitive_service', createObject('endpoint', reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation'))), '2024-06-01-preview').endpoint, 'region', reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation'))), '2024-06-01-preview', 'full').location, 'resource_id', resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))), 'llm', createObject('fast', createObject('context', parameters('llmFastContext'), 'endpoint', format('{0}/openai/deployments/{1}', reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))), '2024-06-01-preview').endpoint, variables('llmFastModelFullName')), 'model', parameters('llmFastModel')), 'slow', createObject('context', parameters('llmSlowContext'), 'endpoint', format('{0}/openai/deployments/{1}', reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))), '2024-06-01-preview').endpoint, variables('llmSlowModelFullName')), 'model', parameters('llmSlowModel'))), 'ai_search', createObject('embedding_deployment', variables('embeddingModelFullName'), 'embedding_dimensions', parameters('embeddingDimensions'), 'embedding_endpoint', reference(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))), '2024-06-01-preview').endpoint, 'embedding_model', parameters('embeddingModel'), 'endpoint', format('https://{0}.search.windows.net', variables('prefix')), 'index', 'trainings'), 'prompts', createObject('llm', variables('localConfig').prompts.llm, 'tts', variables('localConfig').prompts.tts), 'ai_translation', createObject('access_key', listKeys(resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-translate', variables('prefix'), parameters('location'))), '2024-06-01-preview').key1, 'endpoint', format('https://{0}.cognitiveservices.azure.com/', format('{0}-{1}-translate', variables('prefix'), parameters('location')))), 'cache', createObject('mode', 'redis', 'redis', createObject('host', 'redis', 'port', reference(resourceId('Microsoft.App/containerApps', 'redis'), '2024-03-01').configuration.ingress.targetPort, 'ssl', false())), 'app_configuration', createObject('endpoint', reference(resourceId('Microsoft.AppConfiguration/configurationStores', variables('prefix')), '2023-03-01').endpoint)))]"
+                        },
+                        {
+                          "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+                          "value": "[reference(resourceId('Microsoft.Insights/components', variables('prefix')), '2020-02-02').ConnectionString]"
+                        },
+                        {
+                          "name": "OTEL_TRACES_SAMPLER_ARG",
+                          "value": "0.05"
+                        }
+                      ],
+                      "resources": {
+                        "cpu": "[json('1.25')]",
+                        "memory": "2.5Gi"
+                      },
+                      "probes": [
+                        {
+                          "type": "Startup",
+                          "tcpSocket": {
+                            "port": 8080
+                          }
+                        },
+                        {
+                          "type": "Liveness",
+                          "httpGet": {
+                            "path": "/health/liveness",
+                            "port": 8080
+                          },
+                          "periodSeconds": 10,
+                          "timeoutSeconds": 5
+                        },
+                        {
+                          "type": "Readiness",
+                          "httpGet": {
+                            "path": "/health/readiness",
+                            "port": 8080
+                          },
+                          "periodSeconds": 20,
+                          "timeoutSeconds": 10
+                        }
+                      ]
+                    }
+                  ],
+                  "scale": {
+                    "minReplicas": 1,
+                    "rules": "[concat(variables('containerAppScaleRules'), createArray(createObject('name', 'cpu-utilization', 'custom', createObject('type', 'cpu', 'metadata', createObject('type', 'Utilization', 'value', '60')))))]"
+                  }
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/managedEnvironments', variables('prefix'))]",
+                "[resourceId('Microsoft.Insights/components', variables('prefix'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('call-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.AppConfiguration/configurationStores', variables('prefix'))]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers', variables('prefix'), variables('appName'), variables('cosmosContainerName'))]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix'))]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('prefix'), variables('appName'))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('embeddingModelFullName'))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmFastModelFullName'))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmSlowModelFullName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('post-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices/containers', replace(toLower(variables('prefix')), '-', ''), 'default', 'recordings')]",
+                "[resourceId('Microsoft.App/containerApps', 'redis')]",
+                "[resourceId('Microsoft.Search/searchServices', variables('prefix'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('sms-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('trainings-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-translate', variables('prefix'), parameters('location')))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2023-05-01",
+              "name": "[replace(toLower(variables('prefix')), '-', '')]",
+              "location": "[parameters('location')]",
+              "tags": "[shallowMerge(createArray(parameters('tags'), createObject('SecurityControl', 'Ignore')))]",
+              "sku": {
+                "name": "Standard_ZRS"
+              },
+              "kind": "StorageV2",
+              "properties": {
+                "defaultToOAuthAuthentication": true,
+                "isLocalUserEnabled": false,
+                "minimumTlsVersion": "TLS1_2",
+                "supportsHttpsTrafficOnly": true,
+                "publicNetworkAccess": "Enabled"
+              }
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/queueServices",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}', replace(toLower(variables('prefix')), '-', ''), 'default')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', format('call-{0}', variables('phonenumberSanitized')))]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', format('sms-{0}', variables('phonenumberSanitized')))]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', format('post-{0}', variables('phonenumberSanitized')))]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/queueServices/queues",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', format('trainings-{0}', variables('phonenumberSanitized')))]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/blobServices",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}', replace(toLower(variables('prefix')), '-', ''), 'default')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', '$web')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}/{2}', replace(toLower(variables('prefix')), '-', ''), 'default', 'recordings')]",
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', replace(toLower(variables('prefix')), '-', ''), 'default')]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', replace(toLower(variables('prefix')), '-', ''))]",
+              "name": "[guid(subscription().id, variables('prefix'), replace(toLower(variables('prefix')), '-', ''), 'assignmentCommunicationServicesContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.Communication/communicationServices', variables('prefix')), '2023-06-01-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', replace(toLower(variables('prefix')), '-', ''))]",
+              "name": "[guid(subscription().id, variables('prefix'), replace(toLower(variables('prefix')), '-', ''), 'assignmentContainerAppQueueContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', '974c5e8b-45b9-4653-ba55-5f855dd0fb88')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.EventGrid/systemTopics",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[variables('prefix')]",
+              "location": "global",
+              "tags": "[parameters('tags')]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "properties": {
+                "source": "[resourceId('Microsoft.Communication/communicationServices', variables('prefix'))]",
+                "topicType": "Microsoft.Communication.CommunicationServices"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', replace(toLower(variables('prefix')), '-', ''))]",
+              "name": "[guid(subscription().id, variables('prefix'), replace(toLower(variables('prefix')), '-', ''), 'assignmentEventgridTopicQueueSender')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.EventGrid/systemTopics', variables('prefix')), '2024-06-01-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'c6a89b2d-59bc-44d0-9896-0f6e12d7b80a')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.EventGrid/systemTopics', variables('prefix'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', variables('prefix'), format('{0}-{1}', variables('prefix'), variables('phonenumberSanitized')))]",
+              "properties": {
+                "eventDeliverySchema": "EventGridSchema",
+                "deliveryWithResourceIdentity": {
+                  "identity": {
+                    "type": "SystemAssigned"
+                  },
+                  "destination": {
+                    "endpointType": "StorageQueue",
+                    "properties": {
+                      "queueMessageTimeToLiveInSeconds": 30,
+                      "queueName": "[format('call-{0}', variables('phonenumberSanitized'))]",
+                      "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+                    }
+                  }
+                },
+                "filter": {
+                  "enableAdvancedFilteringOnArrays": true,
+                  "advancedFilters": [
+                    {
+                      "operatorType": "StringBeginsWith",
+                      "key": "data.to.PhoneNumber.Value",
+                      "values": [
+                        "[variables('localConfig').communication_services.phone_number]"
+                      ]
+                    }
+                  ],
+                  "includedEventTypes": [
+                    "Microsoft.Communication.IncomingCall"
+                  ]
+                }
+              },
+              "dependsOn": [
+                "[extensionResourceId(resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', '')), 'Microsoft.Authorization/roleAssignments', guid(subscription().id, variables('prefix'), replace(toLower(variables('prefix')), '-', ''), 'assignmentEventgridTopicQueueSender'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('call-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.EventGrid/systemTopics', variables('prefix'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', variables('prefix'), format('{0}-{1}-sms', variables('prefix'), variables('phonenumberSanitized')))]",
+              "properties": {
+                "eventDeliverySchema": "EventGridSchema",
+                "deliveryWithResourceIdentity": {
+                  "identity": {
+                    "type": "SystemAssigned"
+                  },
+                  "destination": {
+                    "endpointType": "StorageQueue",
+                    "properties": {
+                      "queueMessageTimeToLiveInSeconds": -1,
+                      "queueName": "[format('sms-{0}', variables('phonenumberSanitized'))]",
+                      "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+                    }
+                  }
+                },
+                "filter": {
+                  "enableAdvancedFilteringOnArrays": true,
+                  "advancedFilters": [
+                    {
+                      "operatorType": "StringBeginsWith",
+                      "key": "data.to",
+                      "values": [
+                        "[variables('localConfig').communication_services.phone_number]"
+                      ]
+                    }
+                  ],
+                  "includedEventTypes": [
+                    "Microsoft.Communication.SMSReceived"
+                  ]
+                }
+              },
+              "dependsOn": [
+                "[extensionResourceId(resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', '')), 'Microsoft.Authorization/roleAssignments', guid(subscription().id, variables('prefix'), replace(toLower(variables('prefix')), '-', ''), 'assignmentEventgridTopicQueueSender'))]",
+                "[resourceId('Microsoft.EventGrid/systemTopics', variables('prefix'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts/queueServices/queues', replace(toLower(variables('prefix')), '-', ''), 'default', format('sms-{0}', variables('phonenumberSanitized')))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', replace(toLower(variables('prefix')), '-', ''))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))]",
+              "name": "[guid(subscription().id, variables('prefix'), format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')), 'assignmentsCommunicationServicesCognitiveUser')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.Communication/communicationServices', variables('prefix')), '2023-06-01-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'a97b65f3-24c7-4388-baec-2e87135dc908')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))]",
+              "name": "[guid(subscription().id, variables('prefix'), format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')), 'assignmentsAppCognitiveSpeechUser')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'f2dc8367-1007-4938-bd23-fe263f013447')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation')))]",
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation'))]",
+              "location": "[parameters('cognitiveCommunicationLocation')]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "name": "S0"
+              },
+              "kind": "CognitiveServices",
+              "properties": {
+                "customSubDomainName": "[format('{0}-{1}-communication', variables('prefix'), parameters('cognitiveCommunicationLocation'))]"
+              }
+            },
+            {
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "apiVersion": "2024-10-01",
+              "name": "[variables('aiFoundryName')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "kind": "hub",
+              "properties": {
+                "applicationInsights": "[resourceId('Microsoft.Insights/components', variables('prefix'))]",
+                "friendlyName": "[variables('appName')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Insights/components', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.OperationalInsights/workspaces/{0}', variables('prefix'))]",
+              "name": "[guid(subscription().id, variables('prefix'), variables('appName'), 'assignmentsAiProjectLogAnalyticsContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.MachineLearningServices/workspaces', variables('appName')), '2024-10-01', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', '92aaf0da-9dab-42b6-94a3-d43ce8d16293')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', variables('appName'))]",
+                "[resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "apiVersion": "2024-10-01",
+              "name": "[variables('appName')]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "kind": "project",
+              "properties": {
+                "friendlyName": "[variables('appName')]",
+                "hubResourceId": "[resourceId('Microsoft.MachineLearningServices/workspaces', variables('aiFoundryName'))]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', variables('aiFoundryName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+              "name": "[guid(subscription().id, variables('prefix'), format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'assignmentsContainerAppOpenaiContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+              "name": "[guid(subscription().id, variables('prefix'), format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'assignmentSearchOpenaiContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.Search/searchServices', variables('prefix')), '2024-06-01-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'a001fd3d-188f-4b5d-821b-7da978bf7442')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.Search/searchServices', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))]",
+              "location": "[parameters('openaiLocation')]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "name": "S0"
+              },
+              "kind": "OpenAI",
+              "properties": {
+                "customSubDomainName": "[format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation'))]"
+              }
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts/raiPolicies",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'disabled')]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "basePolicyName": "Microsoft.Default",
+                "mode": "Asynchronous_filter",
+                "contentFilters": [
+                  {
+                    "blocking": true,
+                    "enabled": true,
+                    "name": "indirect_attack",
+                    "severityThreshold": "Medium",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": true,
+                    "enabled": true,
+                    "name": "jailbreak",
+                    "severityThreshold": "Medium",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "hate",
+                    "severityThreshold": "High",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "sexual",
+                    "severityThreshold": "High",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "selfharm",
+                    "severityThreshold": "High",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "violence",
+                    "severityThreshold": "High",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "profanity",
+                    "severityThreshold": "High",
+                    "source": "Prompt"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "hate",
+                    "severityThreshold": "High",
+                    "source": "Completion"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "sexual",
+                    "severityThreshold": "High",
+                    "source": "Completion"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "selfharm",
+                    "severityThreshold": "High",
+                    "source": "Completion"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "violence",
+                    "severityThreshold": "High",
+                    "source": "Completion"
+                  },
+                  {
+                    "blocking": "[parameters('promptContentFilter')]",
+                    "enabled": "[parameters('promptContentFilter')]",
+                    "name": "profanity",
+                    "severityThreshold": "High",
+                    "source": "Completion"
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts/deployments",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmSlowModelFullName'))]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "capacity": "[parameters('llmSlowQuota')]",
+                "name": "[parameters('llmSlowDeploymentType')]"
+              },
+              "properties": {
+                "raiPolicyName": "disabled",
+                "versionUpgradeOption": "NoAutoUpgrade",
+                "model": {
+                  "format": "OpenAI",
+                  "name": "[parameters('llmSlowModel')]",
+                  "version": "[parameters('llmSlowVersion')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/raiPolicies', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'disabled')]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts/deployments",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmFastModelFullName'))]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "capacity": "[parameters('llmFastQuota')]",
+                "name": "[parameters('llmFastDeploymentType')]"
+              },
+              "properties": {
+                "raiPolicyName": "disabled",
+                "versionUpgradeOption": "NoAutoUpgrade",
+                "model": {
+                  "format": "OpenAI",
+                  "name": "[parameters('llmFastModel')]",
+                  "version": "[parameters('llmFastVersion')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/raiPolicies', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'disabled')]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmSlowModelFullName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts/deployments",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}/{1}', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('embeddingModelFullName'))]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "capacity": "[parameters('embeddingQuota')]",
+                "name": "[parameters('embeddingDeploymentType')]"
+              },
+              "properties": {
+                "raiPolicyName": "disabled",
+                "versionUpgradeOption": "NoAutoUpgrade",
+                "model": {
+                  "format": "OpenAI",
+                  "name": "[parameters('embeddingModel')]",
+                  "version": "[parameters('embeddingVersion')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')))]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/raiPolicies', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), 'disabled')]",
+                "[resourceId('Microsoft.CognitiveServices/accounts/deployments', format('{0}-{1}-openai', variables('prefix'), parameters('openaiLocation')), variables('llmFastModelFullName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.DocumentDB/databaseAccounts",
+              "apiVersion": "2024-05-15",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('location')]",
+              "tags": "[shallowMerge(createArray(parameters('tags'), createObject('SecurityControl', 'Ignore')))]",
+              "kind": "GlobalDocumentDB",
+              "properties": {
+                "consistencyPolicy": {
+                  "defaultConsistencyLevel": "Strong"
+                },
+                "databaseAccountOfferType": "Standard",
+                "disableLocalAuth": true,
+                "locations": [
+                  {
+                    "locationName": "[parameters('location')]"
+                  }
+                ],
+                "capabilities": [
+                  {
+                    "name": "EnableServerless"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+              "apiVersion": "2024-05-15",
+              "name": "[format('{0}/{1}', variables('prefix'), variables('appName'))]",
+              "properties": {
+                "resource": {
+                  "id": "[variables('appName')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+              "apiVersion": "2024-05-15",
+              "name": "[format('{0}/{1}/{2}', variables('prefix'), variables('appName'), variables('cosmosContainerName'))]",
+              "properties": {
+                "resource": {
+                  "id": "[variables('cosmosContainerName')]",
+                  "indexingPolicy": {
+                    "automatic": true,
+                    "includedPaths": [
+                      {
+                        "path": "/created_at/?",
+                        "indexes": [
+                          {
+                            "dataType": "String",
+                            "kind": "Range",
+                            "precision": -1
+                          }
+                        ]
+                      },
+                      {
+                        "path": "/claim/policyholder_phone/?",
+                        "indexes": [
+                          {
+                            "dataType": "String",
+                            "kind": "Hash",
+                            "precision": -1
+                          }
+                        ]
+                      }
+                    ],
+                    "excludedPaths": [
+                      {
+                        "path": "/*"
+                      }
+                    ]
+                  },
+                  "partitionKey": {
+                    "paths": [
+                      "/initiate/phone_number"
+                    ],
+                    "kind": "Hash"
+                  }
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('prefix'), variables('appName'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments",
+              "apiVersion": "2024-05-15",
+              "name": "[format('{0}/{1}', variables('prefix'), guid(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix')), resourceId('Microsoft.App/containerApps', variables('appName')), resourceId('Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions', variables('prefix'), '00000000-0000-0000-0000-000000000002')))]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "roleDefinitionId": "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions', variables('prefix'), '00000000-0000-0000-0000-000000000002')]",
+                "scope": "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix'))]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Search/searchServices",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('searchLocation')]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "name": "basic"
+              },
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "properties": {
+                "disableLocalAuth": true,
+                "semanticSearch": "standard"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.Search/searchServices/{0}', variables('prefix'))]",
+              "name": "[guid(subscription().id, variables('prefix'), variables('prefix'), 'assignmentSearchDataReader')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', '1407120a-92aa-4202-b7e9-c0e197c71c8f')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]",
+                "[resourceId('Microsoft.Search/searchServices', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.Search/searchServices/{0}', variables('prefix'))]",
+              "name": "[guid(subscription().id, variables('prefix'), variables('prefix'), 'assignmentSearchContributor')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', '7ca78c08-252a-4471-8644-bb5ff32d4ba0')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]",
+                "[resourceId('Microsoft.Search/searchServices', variables('prefix'))]"
+              ]
+            },
+            {
+              "type": "Microsoft.CognitiveServices/accounts",
+              "apiVersion": "2024-06-01-preview",
+              "name": "[format('{0}-{1}-translate', variables('prefix'), parameters('location'))]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "sku": {
+                "name": "S1"
+              },
+              "kind": "TextTranslation",
+              "properties": {
+                "customSubDomainName": "[format('{0}-{1}-translate', variables('prefix'), parameters('location'))]"
+              }
+            },
+            {
+              "type": "Microsoft.AppConfiguration/configurationStores",
+              "apiVersion": "2023-03-01",
+              "name": "[variables('prefix')]",
+              "location": "[parameters('location')]",
+              "sku": {
+                "name": "Standard"
+              }
+            },
+            {
+              "type": "Microsoft.Authorization/roleAssignments",
+              "apiVersion": "2022-04-01",
+              "scope": "[format('Microsoft.AppConfiguration/configurationStores/{0}', variables('prefix'))]",
+              "name": "[guid(subscription().id, variables('prefix'), variables('prefix'), 'assignmentAppConfigurationDataReader')]",
+              "properties": {
+                "principalId": "[reference(resourceId('Microsoft.App/containerApps', variables('appName')), '2024-02-02-preview', 'full').identity.principalId]",
+                "principalType": "ServicePrincipal",
+                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', '516239f1-63e1-4d78-a4de-a74fb236a071')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.AppConfiguration/configurationStores', variables('prefix'))]",
+                "[resourceId('Microsoft.App/containerApps', variables('appName'))]"
+              ]
+            },
+            {
+              "copy": {
+                "name": "configValues",
+                "count": "[length(items(createObject('answer_hard_timeout_sec', 15, 'answer_soft_timeout_sec', 4, 'callback_timeout_hour', 3, 'phone_silence_timeout_sec', 20, 'recognition_retry_max', 2, 'recognition_stt_complete_timeout_ms', 100, 'recording_enabled', false(), 'slow_llm_for_chat', false(), 'vad_cutoff_timeout_ms', 250, 'vad_silence_timeout_ms', 500, 'vad_threshold', '0.5')))]"
+              },
+              "type": "Microsoft.AppConfiguration/configurationStores/keyValues",
+              "apiVersion": "2023-03-01",
+              "name": "[format('{0}/{1}', variables('prefix'), items(createObject('answer_hard_timeout_sec', 15, 'answer_soft_timeout_sec', 4, 'callback_timeout_hour', 3, 'phone_silence_timeout_sec', 20, 'recognition_retry_max', 2, 'recognition_stt_complete_timeout_ms', 100, 'recording_enabled', false(), 'slow_llm_for_chat', false(), 'vad_cutoff_timeout_ms', 250, 'vad_silence_timeout_ms', 500, 'vad_threshold', '0.5'))[copyIndex()].key)]",
+              "properties": {
+                "value": "[toLower(string(items(createObject('answer_hard_timeout_sec', 15, 'answer_soft_timeout_sec', 4, 'callback_timeout_hour', 3, 'phone_silence_timeout_sec', 20, 'recognition_retry_max', 2, 'recognition_stt_complete_timeout_ms', 100, 'recording_enabled', false(), 'slow_llm_for_chat', false(), 'vad_cutoff_timeout_ms', 250, 'vad_silence_timeout_ms', 500, 'vad_threshold', '0.5'))[copyIndex()].value))]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.AppConfiguration/configurationStores', variables('prefix'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "appUrl": {
+              "type": "string",
+              "value": "[format('https://call-center-ai.{0}', reference(resourceId('Microsoft.App/managedEnvironments', variables('prefix')), '2024-02-02-preview').defaultDomain)]"
+            },
+            "blobStoragePublicName": {
+              "type": "string",
+              "value": "[replace(toLower(variables('prefix')), '-', '')]"
+            },
+            "containerAppName": {
+              "type": "string",
+              "value": "[variables('appName')]"
+            },
+            "logAnalyticsCustomerId": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', variables('prefix')), '2023-09-01').customerId]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('instance'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "appUrl": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('instance')), 'Microsoft.Resources/deployments', parameters('instance')), '2022-09-01').outputs.appUrl.value]"
+    },
+    "blobStoragePublicName": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('instance')), 'Microsoft.Resources/deployments', parameters('instance')), '2022-09-01').outputs.blobStoragePublicName.value]"
+    },
+    "containerAppName": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('instance')), 'Microsoft.Resources/deployments', parameters('instance')), '2022-09-01').outputs.containerAppName.value]"
+    },
+    "logAnalyticsCustomerId": {
+      "type": "string",
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('instance')), 'Microsoft.Resources/deployments', parameters('instance')), '2022-09-01').outputs.logAnalyticsCustomerId.value]"
+    }
+  }
+}
