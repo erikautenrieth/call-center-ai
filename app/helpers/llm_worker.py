@@ -144,7 +144,7 @@ async def _completion_stream_worker(
 
     # Start completion
     stream = await client.complete(
-        max_tokens=max_tokens,
+        max_completion_tokens=max_tokens,
         messages=prompt,
         stream=True,
         # AI Inference API doesn't support enpty tools array
@@ -272,7 +272,7 @@ async def _completion_sync_worker(
             # Start completion
             choice = (
                 await client.complete(
-                    max_tokens=max_tokens,
+                    max_completion_tokens=max_tokens,
                     messages=prompt,
                     model=platform.model,
                     response_format="json_object" if json_output else None,
