@@ -412,6 +412,9 @@ async def call_post(request: Request) -> CallGetModel:
         transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
     )
+
+    logger.info("SDK initialized")
+
     call_connection_properties = await automation_client.create_call(
         callback_url=callback_url,
         cognitive_services_endpoint=CONFIG.cognitive_service.endpoint,

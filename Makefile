@@ -139,6 +139,8 @@ build-push:
 	docker push $(container_name):$(version_small)
 	docker push $(container_name):latest
 
+	az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest
+
 deploy: build-push
 	$(MAKE) deploy-bicep
 
