@@ -38,6 +38,8 @@
 
 # container-app: anwendung-container: Eigenschaften
 
+az containerapp restart --name $(container_app_name) --resource-group $(name_sanitized)
+
 ## Befehle
 
 ## show services
