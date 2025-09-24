@@ -11,8 +11,10 @@
 
 7. ```make deploy name=my-rg```
 
-6. Speicherkonto (Rechte setzen)
+8. Speicherkonto (Rechte setzen)
     - Zugriffssteuerung (IAM) - Rollen - Besitzer -> Hinzufügen
+
+9. Container-App neustarten
 
 #### Logs
 
@@ -24,11 +26,11 @@
 
 ## Build Container
 
-# Container registry, in UI erstellen
+# Optional: Container registry, in UI erstellen
 
  sed -i 's/\r$//' cicd/version/version.sh
 
-# chmod +x cicd/version/version.sh
+ chmod +x cicd/version/version.sh
 
  make build
 
@@ -67,3 +69,12 @@ az deployment sub create \
   --template-file cicd/bicep/main.bicep \
   --name zq-uz \
   --debug
+
+## Rights for CosmosDB
+
+az cosmosdb sql role assignment create \
+    --account-name zq-uz \
+    --resource-group zq-uz \
+    --scope "/" \
+    --role-definition-id "00000000-0000-0000-0000-000000000001" \
+    --principal-id 09030c77-f049-4473-b22d-cf648f33ae49
