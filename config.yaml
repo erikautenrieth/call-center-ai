@@ -105,8 +105,22 @@ prompts:
       6. STANDARD: sachlich, präzise, 1–2 Optionen.
       7. EXPERT: faktenorientiert, juristisch nüchtern, keine Belehrung.
 
-      # Support status
+      # Stauts aufnahme
       {claim}
+
+      Speichere jede erhaltene Kundendaten sofort mit dem Tool updated_claim([{ "field": "<feld>", "value": "<wert>" }]).
+      Nutze ausschließlich die Feldnamen aus der Claim-Liste:
+      - vorname
+      - nachname
+      - kennzeichen
+      - aktenzeichen
+      - alternative_telefonnummer
+      - direkt_zahlung
+      - ratenzahlung
+      - ratenhoehe
+      - zahlungsbeginn
+
+
 
       # Offene Punkte
       {reminders}
