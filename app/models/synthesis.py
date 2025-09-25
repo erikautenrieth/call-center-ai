@@ -5,28 +5,29 @@ from pydantic import BaseModel, Field
 
 class SatisfactionEnum(str, Enum):
     TERRIBLE = "terrible"
-    """Satisfaction is very low (1/4)."""
+    """Die Zufriedenheit ist sehr niedrig (1/4)."""
     LOW = "low"
-    """Satisfaction is low (2/4)."""
+    """Die Zufriedenheit ist niedrig (2/4)."""
     PARTIAL = "partial"
-    """Satisfaction is partial (3/4)."""
+    """Die Zufriedenheit ist teilweise gegeben (3/4)."""
     HIGH = "high"
-    """Satisfaction is high (4/4)."""
+    """Die Zufriedenheit ist hoch (4/4)."""
     UNKNOW = "unknow"
 
 
 class SynthesisModel(BaseModel):
     long: str = Field(
         description="""
-        Summarize the call with the customer in a paragraph. The customer cannot reply to this message, but will read it in their web portal.
+        Fassen Sie das Gespräch mit dem Kunden in einem Absatz zusammen.
+        Der Kunde kann auf diese Nachricht nicht antworten, wird sie aber in seinem Web-Portal lesen.
 
-        # Rules
-        - Do not include details of the call process
-        - Do not include personal details (e.g., name, phone number, address)
-        - Include details stored in the claim, to make the customer confident that the situation is understood
-        - Prefer including details about the situation (e.g., what, when, where, how)
-        - Say "you" to refer to the customer, and "I" to refer to the assistant
-        - Use Markdown syntax to format the message with paragraphs, bold text, and URL
+        # Regeln
+        - Keine Details zum Ablauf des Gesprächs angeben
+        - Keine persönlichen Daten angeben (z. B. Name, Telefonnummer, Adresse)
+        - Informationen aus dem Gespräch einbeziehen, um dem Kunden zu zeigen, dass die Situation verstanden wurde
+        - Bevorzugt Details zur Situation angeben (z. B. was, wann, wo, wie)
+        - Verwenden Sie "Sie", um den Kunden anzusprechen, und "ich", um den Assistenten zu benennen
+        - Verwenden Sie Markdown-Syntax, um die Nachricht mit Absätzen, **Fettschrift** und URL zu formatieren
         """
     )
     satisfaction: SatisfactionEnum = Field(
@@ -34,25 +35,28 @@ class SynthesisModel(BaseModel):
     )
     short: str = Field(
         description="""
-        Summarize the call with the customer in a few words. The customer cannot reply to this message, but will read it in their web portal.
+        Fassen Sie das Gespräch mit dem Kunden in wenigen Worten zusammen.
+        Der Kunde kann auf diese Nachricht nicht antworten, wird sie aber in seinem Web-Portal lesen.
 
-        # Rules
-        - Prefix the response with a determiner (e.g., "the theft of your car", "your broken window")
+        # Regeln
+        - Beginnen Sie die Antwort mit einem Artikel (z. B. "die Bestellung der Ware", "Abonnement aufgegeben")
 
-        # Response examples
-        - "the breakdown of your scooter"
-        - "the flooding in your field"
-        - "the theft of your car"
-        - "the water damage in your kitchen"
-        - "your broken window"
+        # Beispiele für Antworten
+        - "die offene Forderung der PARKcontrol24"
+        - "die Vereinbarung zur Ratenzahlung"
+        - "die Zahlung Ihres Parkverstoßes"
+        - "der Ausgleich Ihrer offenen Rechnung"
+        - "die Klärung Ihres Inkassofalls"
+        - "die Mahnung zu Ihrem Aktenzeichen"
+        - "die Begleichung Ihrer Außenstände"
         """
     )
     improvement_suggestions: str = Field(
         description="""
-        Provide suggestions to improve the customer experience during the call.
+        Geben Sie Vorschläge zur Verbesserung des Kundenerlebnisses während des Gesprächs.
 
-        # Rules
-        - Include suggestions to improve the call process, the assistant's behavior, or the company's service
-        - No more than a few sentences
+        # Regeln
+        - Vorschläge zur Verbesserung des Gesprächsablaufs, des Verhaltens des Assistenten oder des Services des Unternehmens einbeziehen
+        - Nicht mehr als ein paar Sätze
         """
     )
