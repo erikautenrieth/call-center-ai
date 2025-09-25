@@ -219,7 +219,6 @@ class LlmModel(BaseModel):
         Synthetize the call.
 
         # Rules
-        - Answers in English, even if the customer speaks another language
         - Be concise
         - Consider all the conversation history, from the beginning
         - Don't make any assumptions

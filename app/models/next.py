@@ -14,20 +14,21 @@ class ActionEnum(str, Enum):
 
 class NextModel(BaseModel):
     action: ActionEnum = Field(
-        description="Action to take after the call, based on the conversation, for the company."
+        description="Maßnahme, die nach dem Gespräch basierend auf dem Gesprächsverlauf für das Unternehmen ergriffen werden soll."
     )
     justification: str = Field(
         description="""
-        Justification for the selected action.
+        Begründung für die gewählte Maßnahme.
 
-        # Rules
-        - No more than a few sentences
+        # Regeln
+        - Nicht mehr als ein paar Sätze
 
-        # Response examples
-        - "Customer is satisfied with the service and confirmed the repair of the car is done. The case can be closed."
-        - "Described damages on the roof are more important than expected. Plus, customer is not sure if the insurance policy covers this kind of damage. The company needs to send an expert to evaluate the situation."
-        - "Document related to the damaged bike are missing. Documents are bike invoice, and the bike repair quote. The customer confirmed they will send them tomorrow by email."
-        - "The company planned the customer taxi ride from the wrong address. The customer is not happy about this situation."
-        - "The customer has many questions about the insurance policy. They are not sure if they are covered for the incident. The contract seems not to be clear about this situation."
+       # Beispiele für Antworten
+        - "Der Kunde hat die offene Forderung vollständig beglichen. Der Fall kann abgeschlossen werden."
+        - "Der Kunde ist mit der vorgeschlagenen Ratenzahlung einverstanden. Vereinbarung wurde bestätigt. Fall kann abgeschlossen werden."
+        - "Dem Kunden fehlen noch Unterlagen zum Parkverstoß (z. B. Zahlungsbeleg). Er wird diese bis Freitag per E-Mail zusenden."
+        - "Der Kunde ist mit der Höhe der Rate nicht einverstanden und möchte mit einem Vorgesetzten sprechen. Vorgang hat hohe Priorität."
+        - "Der Kunde möchte eine neue Zahlungsvereinbarung mit geänderter Ratenhöhe abschließen. Neuer Vertrag muss vorbereitet werden."
+        - "Der Kunde bestreitet die Forderung und benötigt eine rechtliche Prüfung des Vorgangs. Ein Experte soll den Fall übernehmen."
         """
     )
