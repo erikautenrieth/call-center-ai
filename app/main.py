@@ -412,7 +412,6 @@ async def call_post(request: Request) -> CallGetModel:
         start_media_streaming=False,
         transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
-        enable_bidirectional=True,
         audio_format=AudioFormat.PCM24_K_MONO,
     )
 
