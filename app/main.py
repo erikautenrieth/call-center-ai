@@ -409,7 +409,7 @@ async def call_post(request: Request) -> CallGetModel:
     streaming_options = MediaStreamingOptions(
         audio_channel_type=MediaStreamingAudioChannelType.UNMIXED,
         content_type=MediaStreamingContentType.AUDIO,
-        start_media_streaming=True,
+        start_media_streaming=False,
         transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
         enable_bidirectional=True,
