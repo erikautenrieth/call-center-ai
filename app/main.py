@@ -13,6 +13,7 @@ from uuid import UUID
 import jwt
 import mistune
 from azure.communication.callautomation import (
+    AudioFormat,
     MediaStreamingAudioChannelType,
     MediaStreamingContentType,
     MediaStreamingOptions,
@@ -408,12 +409,14 @@ async def call_post(request: Request) -> CallGetModel:
     streaming_options = MediaStreamingOptions(
         audio_channel_type=MediaStreamingAudioChannelType.UNMIXED,
         content_type=MediaStreamingContentType.AUDIO,
-        start_media_streaming=False,
+        start_media_streaming=True,
         transport_type=StreamingTransportType.WEBSOCKET,
         transport_url=wss_url,
+        enable_bidirectional=True,
+        audio_format=AudioFormat.PCM24_K_MONO,
     )
 
-    logger.info("SDK initialized")
+    logger.info("SDK initialized ")
 
     call_connection_properties = await automation_client.create_call(
         callback_url=callback_url,
