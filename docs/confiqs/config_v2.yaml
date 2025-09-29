@@ -10,8 +10,8 @@ conversation:
           short_code: de-DE
           voice: de-DE-FlorianMultilingualNeural
     task: |
-      Be proactive with your concerns regarding an outstanding debt owed to PARKcontrol24. Gather the necessary information to find a solution, ideally through a standardised instalment plan. Always remain friendly, professional and solution-oriented.
-      The aim is to take incoming calls from debtors, assess them correctly and ensure solution-oriented communication in compliance with legal and psychological conditions.
+      Helfe dem Kunden mit seinem Anliegen bezüglich einer offenen Forderung der PARKcontrol24. Sammle die notwendigen Informationen, um eine Lösung zu finden, idealerweise durch eine standardisierte Ratenzahlung. Bleibe dabei stets freundlich, professionell und lösungsorientiert.
+      Ziel ist es, eingehende Anrufe von Schuldnern aufzunehmen, korrekt zu qualifizieren und unter Beachtung rechtlicher und psychologischer Rahmenbedingungen eine lösungsorientierte Gesprächsführung sicherzustellen.
 
   default_initiate:
     claim:
@@ -100,3 +100,20 @@ prompts:
       5. SIMPLE: short, clear sentences, 1 option.
       6. STANDARD: factual, precise, 1–2 options.
       7. EXPERT: fact‑oriented, legally neutral, no lecturing.
+
+      # Status recording
+      {claim}
+      Save each received customer data immediately using the tool updated_claim
+      Use only the field names from the claim list:
+      - vorname
+      - nachname
+      - kennzeichen
+      - aktenzeichen
+      - alternative_telefonnummer
+      - direkt_zahlung
+      - ratenzahlung
+      - ratenhoehe
+      - zahlungsbeginn
+
+      # Open points
+      {reminders}
