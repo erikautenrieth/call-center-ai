@@ -1,0 +1,29 @@
+{
+  "lang":
+    {
+      "default_short_code": "de-DE",
+      "availables":
+        [
+          {
+            "pronunciations_en": ["German", "DE", "Germany"],
+            "short_code": "de-DE",
+            "voice": "de-DE-ConradNeura",
+          },
+          {
+            "pronunciations_en": ["Arabic", "SA", "Saudi Arabia"],
+            "short_code": "ar-SA",
+            "voice": "ar-SA-HamedNeural",
+          },
+          {
+            "pronunciations_en": ["Russian", "RU", "Russia"],
+            "short_code": "ru-RU",
+            "voice": "ru-RU-DmitryNeural",
+          },
+          {
+            "pronunciations_en": ["English", "EN", "United States"],
+            "short_code": "en-US",
+            "voice": "en-US-AlloyTurboMultilingualNeural",
+          },
+        ],
+    },
+}
