@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Call starten</title>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:2rem}
+    form{display:grid;gap:.75rem;max-width:420px}
+    input,button{padding:.6rem .8rem;font-size:1rem}
+    pre{background:#f6f8fa;padding:1rem;overflow:auto;max-width:720px}
+  </style>
+</head>
+<body>
+  <h1>Telefonanruf starten</h1>
+  <form id="f">
+    <label for="phone">Telefonnummer (z. B. +49777888777)</label>
+    <input id="phone" name="phone" type="tel" placeholder="+49777888777" required pattern="^\+[0-9]{6,15}$">
+    <button id="btn" type="submit">Start</button>
+  </form>
+  <pre id="out"></pre>
+  <script src="app.js"></script>
+</body>
+</html>

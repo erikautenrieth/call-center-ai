@@ -35,6 +35,7 @@ from fastapi import (
 )
 from fastapi.exceptions import RequestValidationError, ValidationException
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from htmlmin.minify import html_minify
 from jinja2 import Environment, FileSystemLoader
 from pydantic import Field, TypeAdapter, ValidationError
@@ -178,6 +179,12 @@ api = FastAPI(
     lifespan=lifespan,
     title="call-center-ai",
     version=CONFIG.version,
+)
+
+api.mount(
+    "/call-website",
+    StaticFiles(directory=resources_dir("call_website"), html=True),
+    name="call_website",
 )
 
 
