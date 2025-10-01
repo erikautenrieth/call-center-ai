@@ -20,7 +20,7 @@ async def answer_hard_timeout_sec() -> int:
     Time waiting the LLM before aborting the answer with an error message.
     """
     return await _default(
-        default=15,
+        default=15,  # 15
         key="answer_hard_timeout_sec",
         type_res=int,
     )
@@ -31,7 +31,7 @@ async def answer_soft_timeout_sec() -> int:
     Time waiting the LLM before sending a waiting message.
     """
     return await _default(
-        default=3,
+        default=1,  # 3
         key="answer_soft_timeout_sec",
         type_res=int,
     )
@@ -42,7 +42,7 @@ async def callback_timeout_hour() -> int:
     The timeout for a callback in hours. Set 0 to disable.
     """
     return await _default(
-        default=24,
+        default=24,  # 24
         key="callback_timeout_hour",
         type_res=int,
     )
@@ -53,7 +53,7 @@ async def phone_silence_timeout_sec() -> int:
     Amount of silence in secs to trigger a warning message from the assistant.
     """
     return await _default(
-        default=20,
+        default=10,  # 20
         key="phone_silence_timeout_sec",
         type_res=int,
     )
@@ -64,10 +64,10 @@ async def vad_threshold() -> float:
     The threshold for voice activity detection. Between 0.1 and 1.
     """
     return await _default(
-        default=0.5,
+        default=0.8,  # 0.5
         key="vad_threshold",
-        max_incl=1,
-        min_incl=0.1,
+        max_incl=1,  # 1
+        min_incl=0.1,  # 0.1
         type_res=float,
     )
 
@@ -77,7 +77,7 @@ async def vad_silence_timeout_ms() -> int:
     Silence to trigger voice activity detection in milliseconds.
     """
     return await _default(
-        default=500,
+        default=250,  # 500
         key="vad_silence_timeout_ms",
         type_res=int,
     )
@@ -88,7 +88,7 @@ async def vad_cutoff_timeout_ms() -> int:
     The cutoff timeout for voice activity detection in milliseconds.
     """
     return await _default(
-        default=250,
+        default=600,  # 250
         key="vad_cutoff_timeout_ms",
         type_res=int,
     )
@@ -121,7 +121,7 @@ async def recognition_retry_max() -> int:
     The maximum number of retries for voice recognition. Minimum of 1.
     """
     return await _default(
-        default=3,
+        default=3,  # 3
         key="recognition_retry_max",
         min_incl=1,
         type_res=int,
@@ -133,7 +133,7 @@ async def recognition_stt_complete_timeout_ms() -> int:
     The timeout for STT completion in milliseconds.
     """
     return await _default(
-        default=100,
+        default=180,  # 100
         key="recognition_stt_complete_timeout_ms",
         type_res=int,
     )

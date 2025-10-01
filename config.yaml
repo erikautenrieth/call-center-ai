@@ -43,7 +43,7 @@ prompts:
   tts:
     hello_tpl:
       - |
-        Hello, I am {bot_name}, from {bot_company}! I work in the debt collection center of MINDfields AG on behalf of PARKcontrol24. How can I help you?
+        Hello, I am {bot_name}, from {bot_company}! I work in the debt collection center of MINDfields AG on behalf of parkcontrol24. How can I help you?
       - |
         Hi, I am {bot_name} from {bot_company}. I am here to help. How may I assist you?
   llm:

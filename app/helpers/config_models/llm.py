@@ -12,7 +12,7 @@ class DeploymentModel(BaseModel, frozen=True):
     endpoint: str
     model: str
     seed: int = 42  # Reproducible results
-    temperature: float = 0.0  # Most focused and deterministic
+    temperature: float = 0.5  # with 0.0 Most focused and deterministic
 
     @lru_acache()
     async def client(self) -> tuple[ChatCompletionsClient, "DeploymentModel"]:
