@@ -214,6 +214,7 @@ class CosmosDbStore(IStore):
         # Persist
         try:
             async with self._use_client() as db:
+                logger.debug("Try to create data %s in CosmosDB", data)
                 await db.create_item(body=data)
         except CosmosHttpResponseError:
             logger.exception("Error accessing CosmosDB")
