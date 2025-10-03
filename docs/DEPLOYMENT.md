@@ -55,6 +55,10 @@ az cognitiveservices account list-models \
   --resource-group zq-uz \
   --output table
 
+## Restart Container-App
+
+az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest    (test)
+
 ## Debug deploy
 
 az deployment sub create \
