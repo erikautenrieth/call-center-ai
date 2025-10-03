@@ -7,7 +7,8 @@ tunnel_url ?= $(shell res=$$(devtunnel show $(tunnel_name) | grep -o 'http[s]*:/
 # Container configuration
 GHCR_USER := erikautenrieth
 #container_name := zquzcallai.azurecr.io/call-center-ai
-container_name := ghcr.io/erikautenrieth/call-center-ai
+#container_name := ghcr.io/erikautenrieth/call-center-ai
+container_name := callcenterairegistry-fwcsemgse7bmhmfm.azurecr.io/call-center-ai
 image_version := latest
 # App location
 # Warning: Some regions may not support all services (e.g. OpenAI models, AI Search) or capabilities (e.g. Cognitive Services TTS voices). Those regions have been tested and are known to work. If you encounter issues, please refer to the Azure documentation for the latest information, or try deploying with default locations.
@@ -138,6 +139,13 @@ build-push:
 	$(MAKE) build
 	docker push $(container_name):$(version_small)
 	docker push $(container_name):latest
+
+	az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest
+
+build-push-azure:
+	$(MAKE) build
+	docker image push $(container_name):$(version_small)
+	docker image push $(container_name):latest
 
 	az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest
 
