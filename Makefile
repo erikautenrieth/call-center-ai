@@ -149,7 +149,7 @@ build-push-azure:
 
 	az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest
 
-deploy: build-push-azure
+deploy:
 	$(MAKE) deploy-bicep
 
 	@echo "🚀 Call Center AI is running on $(app_url)"

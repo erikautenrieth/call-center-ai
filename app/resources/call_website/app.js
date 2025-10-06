@@ -9,11 +9,53 @@ const defaultPayload = {
     availables: [{ pronunciations_en: ["German","DE","Germany"], short_code: "de-DE", voice: "de-DE-FlorianMultilingualNeural" }]
   },
   claim: [
-    { name: "vorname", type: "text" }, { name: "nachname", type: "text" }, { name: "kennzeichen", type: "text" },
-    { name: "aktenzeichen", type: "text" }, { name: "alternative_telefonnummer", type: "phone_number" },
-    { name: "direkt_zahlung", type: "text" }, { name: "ratenzahlung", type: "text" },
-    { name: "ratenhoehe", type: "text" }, { name: "zahlungsbeginn", type: "datetime" }
-  ]
+    {
+      "description": "Vorname des Schuldners",
+      "name": "vorname",
+      "type": "text"
+    },
+    {
+      "description": "Nachname des Schuldners",
+      "name": "nachname",
+      "type": "text"
+    },
+    {
+      "description": "Kennzeichen des Fahrzeugs",
+      "name": "kennzeichen",
+      "type": "text"
+    },
+    {
+      "description": "Aktenzeichen oder Referenznummer der Forderung",
+      "name": "aktenzeichen",
+      "type": "text"
+    },
+    {
+      "description": "Alternative Telefonnummer für Rückfragen",
+      "name": "alternative_telefonnummer",
+      "type": "phone_number"
+    },
+    {
+      "description": "Direktzahlung vereinbart? (Ja/Nein)",
+      "name": "direkt_zahlung",
+      "type": "text"
+    },
+    {
+      "description": "Ratenzahlung vereinbart? (Ja/Nein)",
+      "name": "ratenzahlung",
+      "type": "text"
+    },
+    {
+      "description": "Höhe der Raten bei Ratenzahlung",
+      "name": "ratenhoehe",
+      "type": "text"
+    },
+    {
+      "description": "Datum des Beginns der Zahlung oder ersten Rate",
+      "name": "zahlungsbeginn",
+      "type": "datetime"
+    }
+  ],
+    prosody_rate: 1.00
 };
 
 const form = document.getElementById("f");
@@ -41,6 +83,7 @@ form.addEventListener("submit", async (e) => {
 
   const phone = phoneInput.value.trim();
   const task = (taskInput?.value || "").trim();
+  const prosodyRate = Math.min(1.25, Math.max(0.75, parseFloat(prosodyRateInput.value)));
 
   if (!phone) return;
 
@@ -50,7 +93,8 @@ form.addEventListener("submit", async (e) => {
   try {
     const payload = buildPayload({
       phone_number: phone,
-       task: String(task || defaultPayload.task)
+      task: String(task || defaultPayload.task),
+      prosody_rate: prosodyRate
     });
 
     const res = await postCall(payload);

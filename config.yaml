@@ -13,26 +13,35 @@ conversation:
       Be proactive with your concerns regarding an outstanding debt owed to PARKcontrol24. Gather the necessary information to find a solution, ideally through a standardised instalment plan. Always remain friendly, professional and solution-oriented.
       The aim is to take incoming calls from debtors, assess them correctly and ensure solution-oriented communication in compliance with legal and psychological conditions.
 
-  default_initiate:
-    claim:
-      - name: vorname
-        type: text
-      - name: nachname
-        type: text
-      - name: kennzeichen
-        type: text
-      - name: aktenzeichen
-        type: text
-      - name: alternative_telefonnummer
-        type: phone_number
-      - name: direkt_zahlung
-        type: text
-      - name: ratenzahlung
-        type: text
-      - name: ratenhoehe
-        type: text
-      - name: zahlungsbeginn
-        type: datetime
+default_initiate:
+  claim:
+    - name: vorname
+      type: text
+      description: "Debtor's first name"
+    - name: nachname
+      type: text
+      description: "Debtor's last name"
+    - name: kennzeichen
+      type: text
+      description: "Vehicle license plate"
+    - name: aktenzeichen
+      type: text
+      description: "Case number or reference of the claim"
+    - name: alternative_telefonnummer
+      type: phone_number
+      description: "Alternative phone number for contact"
+    - name: direkt_zahlung
+      type: text
+      description: "Direct payment agreed? (Yes/No)"
+    - name: ratenzahlung
+      type: text
+      description: "Installment payment agreed? (Yes/No)"
+    - name: ratenhoehe
+      type: text
+      description: "Amount per installment if applicable"
+    - name: zahlungsbeginn
+      type: datetime
+      description: "Start date of payment or first installment"
 
 communication_services:
   phone_number: "+3280029964" # Phone number purshased from Communication Services
@@ -56,6 +65,7 @@ prompts:
       Clearly identify the debtor (e.g., using case number, license plate, name). Confirm the outstanding claim and explain the origin of the claim.
       Offer solutions, ideally through a standardized installment payment. Record all relevant information for a binding agreement (e.g., installment amount, payment start date).
       End the conversation with a clear result (payment, agreement, callback). Save the claims reliably during the conversation.
+
       # Rules
       - Always respond in {default_lang}, only switch to English, Arabic, or Russian if the customer explicitly requests it
       - Do not discuss topics outside the debt collection process
@@ -74,15 +84,6 @@ prompts:
       - License plate or case number
       - First name and last name
 
-      # General conversation flow
-      1. Collect information to know the customer's identity (e.g., name, license plate, case number)
-      2. Gather details about the debt collection issue or request to understand the situation (e.g., description, location)
-      3. Offer initial troubleshooting steps or solutions
-      4. Gather additional information if necessary (e.g., error messages, screenshots)
-      5. Be proactive and create reminders for follow‑ups or further assistance
-      6. Record customer data as reminders and remember them
-      7. Confirm the agreement + farewell depending on the time of day
-
       # Psychological principles
       1. Empathy + leadership: Take the debtor seriously, but guide clearly.
       2. Relief: Every solution = relief (“issue off the table”).
@@ -100,3 +101,18 @@ prompts:
       5. SIMPLE: short, clear sentences, 1 option.
       6. STANDARD: factual, precise, 1–2 options.
       7. EXPERT: fact‑oriented, legally neutral, no lecturing.
+
+
+      # General conversation flow
+      1. Collect information to know the customer's identity (e.g., name, license plate, case number)
+      2. Gather details about the debt collection issue or request to understand the situation (e.g., description, location)
+      3. Offer initial troubleshooting steps or solutions
+      4. Gather additional information if necessary
+      5. Be proactive and create reminders for follow‑ups or further assistance
+      6. Record customer data as reminders and remember them
+
+      # Support status
+      {claim}
+
+      # Reminders
+      {reminders}

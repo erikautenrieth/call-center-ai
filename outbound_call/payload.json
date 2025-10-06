@@ -4,6 +4,7 @@
     "phone_number": "+49777888777",
     "task": "General task",
     "agent_phone_number": "+18882818144",
+    "prosody_rate": 1.10,
     "lang": {
         "default_short_code": "de-DE",
         "availables": [
