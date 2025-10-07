@@ -513,7 +513,7 @@ class TtsModel(BaseModel):
         "Hello, I'm {bot_name}. How can I assist you today?",
         "Hello, this is {bot_name} from {bot_company}. How can I assist you?",
         "Hi there! {bot_name} at {bot_company}, what can I help you with?",
-        "Welcome to {bot_company}! I'm {bot_name}, your virtual assistant. How may I help?",
+        "Welcome to {bot_company}! I'm {bot_name}, your assistant. How may I help?",
     ]
     timeout_silence_tpl: list[str] = [
         "Are you still there? How can I help?",
