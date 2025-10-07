@@ -4,6 +4,7 @@ const defaultPayload = {
   phone_number: "+49777888777",
   task: "Call the debtor proactively and make it clear that there is an outstanding claim from PARKcontrol24. Identify the customer unambiguously (license plate or case number as well as first and last name), briefly explain the origin of the claim and offer a solution: lump-sum payment or standardized installment plan. Record all data for a binding agreement (installment amount, payment start date) and store it continuously. Remain friendly, professional, and solution-oriented.",
   agent_phone_number: "+18882818144",
+  prosody_rate: 1.00,
   lang: {
     default_short_code: "de-DE",
     availables: [{ pronunciations_en: ["German","DE","Germany"], short_code: "de-DE", voice: "de-DE-FlorianMultilingualNeural" }]
@@ -55,14 +56,15 @@ const defaultPayload = {
       "type": "datetime"
     }
   ],
-    prosody_rate: 1.00
 };
 
 const form = document.getElementById("f");
 const phoneInput = document.getElementById("phone");
 const taskInput = document.getElementById("task");
+const prosodyRateInput = document.getElementById("prosody_rate");
 const out = document.getElementById("out");
 const btn = document.getElementById("btn");
+
 
 function buildPayload(overrides = {}) {
   return { ...defaultPayload, ...overrides };
@@ -83,7 +85,7 @@ form.addEventListener("submit", async (e) => {
 
   const phone = phoneInput.value.trim();
   const task = (taskInput?.value || "").trim();
-  const prosodyRate = Math.min(1.25, Math.max(0.75, parseFloat(prosodyRateInput.value)));
+  const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
 
   if (!phone) return;
 
