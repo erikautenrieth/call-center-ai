@@ -86,3 +86,9 @@ az cosmosdb sql role assignment create \
     --scope "/" \
     --role-definition-id "00000000-0000-0000-0000-000000000001" \
     --principal-id 09030c77-f049-4473-b22d-cf648f33ae49
+
+## Models
+
+gpt-4o-realtime-preview
+2024-12-17
+2025-06-03
