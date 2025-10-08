@@ -115,7 +115,7 @@ class DefaultPlugin(AbstractPlugin):
         self,
         description: Annotated[
             str,
-            "Description of the reminder, in English. Should be detailed enough to be understood by anyone. Example: 'Call back customer to get more details about the accident', 'Send analysis report to the customer'.",
+            "Description of the reminder, in German. Should be detailed enough to be understood by anyone. Example: 'Rufen Sie den Kunden zurück, um weitere Informationen zum Anspruch zu erhalten', 'Senden Sie den Analysebericht an den Kunden', 'Senden Sie dem Kunden die Zahlungsdaten (IBAN, Verwendungszweck, Frist)'.",
         ],
         due_date_time: Annotated[
             str,
@@ -123,11 +123,11 @@ class DefaultPlugin(AbstractPlugin):
         ],
         owner: Annotated[
             str,
-            "The owner of the reminder, in English. Can be 'customer', 'assistant', or a third party from the claim. Try to be as specific as possible, with a name. Example: 'customer', 'assistant', 'contact', 'witness', 'police'.",
+            "The owner of the reminder, in German. Can be 'customer', 'assistant', or a third party from the claim. Try to be as specific as possible, with a name. Example: 'customer', 'assistant', 'contact.",
         ],
         title: Annotated[
             str,
-            "Short title of the reminder, in English. Should be short and concise, in the format 'Verb + Subject'. Title is unique and allows the reminder to be updated. Example: 'Call back customer', 'Send analysis report', 'Study replacement estimates for the stolen watch'.",
+            "Short title of the reminder, in German. Should be short and concise, in the format 'Verb + Subjekt'. Title is unique and allows the reminder to be updated. Example: 'Kunden zurückrufen', 'Analysebericht senden', 'Rechnungsdaten senden'.",
         ],
     ) -> str:
         """
@@ -135,7 +135,7 @@ class DefaultPlugin(AbstractPlugin):
 
         # Behavior
         1. Create a reminder with the given values
-        2. Return a confirmation message
+        2. Save the reminder without confirmation
 
         # Rules
         - A reminder should be as specific as possible
@@ -171,19 +171,19 @@ class DefaultPlugin(AbstractPlugin):
         except ValidationError as e:
             return f'Failed to create reminder "{title}": {e.json()}'
 
-    @add_customer_response(
-        [
-            "I am updating the claim with your new address.",
-            "The phone number is now stored in the case.",
-            "Your birthdate is written down.",
-        ]
-    )
+    #    @add_customer_response(
+    #        [
+    #            "I am updating the claim with your new address.",
+    #            "The phone number is now stored in the case.",
+    #            "Your birthdate is written down.",
+    #        ]
+    #    )
     async def updated_claim(
         self,
         updates: Annotated[
             list[UpdateClaimDict],
             """
-            The field to update, in English.
+            The field to update, in German.
 
             # Available fields
             {% for field in call.initiate.claim %}
@@ -202,8 +202,17 @@ class DefaultPlugin(AbstractPlugin):
             [{'field': '[field]', 'value': '[value]'}]
 
             # Examples
-            - [{'field': 'policyholder_email', 'value': 'mariejeanne@gmail.com'}]
-            - [{'field': 'policyholder_name', 'value': 'Marie-Jeanne Duchemin'}, {'field': 'policyholder_phone', 'value': '+33612345678'}]
+            - [{'field': 'nachname', 'value': 'Mustermann'}]
+            - [{'field': 'vorname', 'value': 'Max'}, {'field': 'nachname', 'value': 'Mustermann'}]
+            - [{'field': 'kennzeichen', 'value': 'B-AB 1234'}]
+            - [{'field': 'aktenzeichen', 'value': 'PC24-2024-000123'}]
+            - [{'field': 'alternative_telefonnummer', 'value': '+4915123456789'}]
+            - [{'field': 'direkt_zahlung', 'value': 'Ja'}]
+            - [{'field': 'ratenzahlung', 'value': 'Nein'}]
+            - [{'field': 'ratenzahlung', 'value': 'Ja'}, {'field': 'ratenhoehe', 'value': '50 EUR'}, {'field': 'zahlungsbeginn', 'value': '2025-11-01 09:30'}]
+            - [{'field': 'vorname', 'value': 'Anna'}, {'field': 'nachname', 'value': 'Schmidt'}, {'field': 'kennzeichen', 'value': 'M-XY 9876'}]
+            - [{'field': 'aktenzeichen', 'value': 'PC24-2025-000777'}, {'field': 'alternative_telefonnummer', 'value': '+4922112345678'}]
+            - [{'field': 'ratenzahlung', 'value': 'Ja'}, {'field': 'ratenhoehe', 'value': '120,00 EUR'}, {'field': 'zahlungsbeginn', 'value': '2025-12-15 08:00'}]
             """,
         ],
     ) -> str:

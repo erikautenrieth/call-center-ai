@@ -17,10 +17,10 @@ default_initiate:
   claim:
     - name: vorname
       type: text
-      description: "Debtor's first name"
+      description: "first name"
     - name: nachname
       type: text
-      description: "Debtor's last name"
+      description: "last name"
     - name: kennzeichen
       type: text
       description: "Vehicle license plate"
