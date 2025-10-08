@@ -44,6 +44,10 @@ az containerapp restart --name $(container_app_name) --resource-group $(name_san
 
 ## Befehle
 
+## Deploy
+
+ make deploy name=zq-uz
+
 ## show services
 
 az cognitiveservices account list --subscription d058a8a3-67c8-4953-aaa8-2ee95a93bd36 --output table
