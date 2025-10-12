@@ -235,6 +235,7 @@ class DefaultPlugin(AbstractPlugin):
         """
         # Update all claim fields
         res = "# Updated fields"
+        logger.info("Updating claim with: %s", updates)
         for field in updates:
             res += f"\n- {self._update_claim_field(field)}"
         return res
