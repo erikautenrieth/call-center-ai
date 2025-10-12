@@ -70,49 +70,49 @@ class WorkflowInitiateModel(BaseModel):
     bot_name: str
     claim: list[ClaimFieldModel] = [
         ClaimFieldModel(
-            description="Date and time of the incident",
-            name="incident_datetime",
+            description="first name",
+            name="vorname",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="last name",
+            name="nachname",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="Vehicle license plate",
+            name="kennzeichen",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="Case number or reference",
+            name="aktenzeichen",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="Alternative phone number for contact",
+            name="alternative_telefonnummer",
+            type=ClaimTypeEnum.PHONE_NUMBER,
+        ),
+        ClaimFieldModel(
+            description="Direct payment agreed? (Yes/No)",
+            name="direkt_zahlung",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="Installment payment agreed? (Yes/No)",
+            name="ratenzahlung",
+            type=ClaimTypeEnum.TEXT,
+        ),
+        ClaimFieldModel(
+            description="Amount per installment if applicable",
+            name="ratenhoehe",
+            type=ClaimTypeEnum.TEXT,
+        ),
+      ClaimFieldModel(
+            description="Start date of payment or first installment",
+            name="zahlungsbeginn",
             type=ClaimTypeEnum.DATETIME,
-        ),
-        ClaimFieldModel(
-            description="Description of the incident",
-            name="incident_description",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Location of the incident",
-            name="incident_location",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Injuries sustained during the incident",
-            name="injuries",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Involved parties in the incident",
-            name="involved_parties",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Medical records related to the incident",
-            name="medical_records",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Policy number of the customer",
-            name="policy_number",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Pre-existing damages",
-            name="pre_existing_damages",
-            type=ClaimTypeEnum.TEXT,
-        ),
-        ClaimFieldModel(
-            description="Witnesses of the incident",
-            name="witnesses",
-            type=ClaimTypeEnum.TEXT,
         ),
     ]  # Configured like in v4 for compatibility
     lang: LanguageModel = LanguageModel()  # Object is fully defined by default
@@ -129,19 +129,49 @@ class WorkflowInitiateModel(BaseModel):
             fields=[
                 *self.claim,
                 ClaimFieldModel(
-                    description="Email of the customer",
-                    name="policyholder_email",
-                    type=ClaimTypeEnum.EMAIL,
-                ),
-                ClaimFieldModel(
-                    description="First and last name of the customer",
-                    name="policyholder_name",
+                    description="first name",
+                    name="vorname",
                     type=ClaimTypeEnum.TEXT,
                 ),
                 ClaimFieldModel(
-                    description="Phone number of the customer",
-                    name="policyholder_phone",
+                    description="last name",
+                    name="nachname",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                ClaimFieldModel(
+                    description="Vehicle license plate",
+                    name="kennzeichen",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                ClaimFieldModel(
+                    description="Case number or reference",
+                    name="aktenzeichen",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                ClaimFieldModel(
+                    description="Alternative phone number for contact",
+                    name="alternative_telefonnummer",
                     type=ClaimTypeEnum.PHONE_NUMBER,
+                ),
+                ClaimFieldModel(
+                    description="Direct payment agreed? (Yes/No)",
+                    name="direkt_zahlung",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                ClaimFieldModel(
+                    description="Installment payment agreed? (Yes/No)",
+                    name="ratenzahlung",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                ClaimFieldModel(
+                    description="Amount per installment if applicable",
+                    name="ratenhoehe",
+                    type=ClaimTypeEnum.TEXT,
+                ),
+                 ClaimFieldModel(
+                    description="Start date of payment or first installment",
+                    name="zahlungsbeginn",
+                    type=ClaimTypeEnum.DATETIME,
                 ),
             ],
         )

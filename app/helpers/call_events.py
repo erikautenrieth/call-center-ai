@@ -639,6 +639,7 @@ async def _intelligence_sms(
         return
 
     # Send the SMS to both the current caller and the policyholder
+    # ToDo: policyholder number should be deleted
     success = False
     for number in set(
         [call.initiate.phone_number, call.claim.get("policyholder_phone", None)]

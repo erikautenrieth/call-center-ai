@@ -26,7 +26,7 @@ default_initiate:
       description: "Vehicle license plate"
     - name: aktenzeichen
       type: text
-      description: "Case number or reference of the claim"
+      description: "Case number or reference"
     - name: alternative_telefonnummer
       type: phone_number
       description: "Alternative phone number for contact"
