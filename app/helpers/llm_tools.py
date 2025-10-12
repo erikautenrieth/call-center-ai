@@ -171,13 +171,13 @@ class DefaultPlugin(AbstractPlugin):
         except ValidationError as e:
             return f'Failed to create reminder "{title}": {e.json()}'
 
-    #    @add_customer_response(
-    #        [
-    #            "I am updating the claim with your new address.",
-    #            "The phone number is now stored in the case.",
-    #            "Your birthdate is written down.",
-    #        ]
-    #    )
+    @add_customer_response(
+        [
+            "I am updating the claim with your new address.",
+            "The phone number is now stored in the case.",
+            "Your birthdate is written down.",
+        ]
+    )
     async def updated_claim(
         self,
         updates: Annotated[
