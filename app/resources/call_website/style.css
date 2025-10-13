@@ -1,10 +1,10 @@
 :root {
-  --bg-overlay: rgba(12, 18, 32, 0.55);
-  --card-bg: rgba(255, 255, 255, 0.97);
+  --bg-overlay: rgba(12, 18, 32, 0.35); /* etwas heller */
+  --card-bg: rgba(255, 255, 255, 0.95);
   --text: #0f172a;
   --muted: #475569;
   --border: #e2e8f0;
-  --shadow: 0 8px 28px rgba(16, 24, 40, 0.22);
+  --shadow: 0 6px 20px rgba(16, 24, 40, 0.18);
   --primary: #2563eb;
   --primary-hover: #1e40af;
   --button-text: #ffffff;
@@ -38,9 +38,9 @@ body::before {
 /* Container Grid */
 .container {
   display: grid;
-  grid-template-columns: 1.5fr 2fr 1fr; /* mittlere Spalte breiter */
-  gap: 2rem;
-  padding: 3rem;
+  grid-template-columns: 1.4fr 2fr 1fr;
+  gap: 1.8rem;
+  padding: 2.5rem;
   align-items: start;
 }
 
@@ -52,9 +52,9 @@ body::before {
 /* Card-Styling */
 .card {
   background: var(--card-bg);
-  backdrop-filter: blur(6px) saturate(120%);
-  border-radius: 14px;
-  padding: 2rem;
+  backdrop-filter: blur(5px) saturate(110%);
+  border-radius: 12px;
+  padding: 1.8rem;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
   position: relative;
@@ -63,14 +63,14 @@ body::before {
 
 .card textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 110px;
   resize: vertical;
 }
 
 .card h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* kleiner */
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   color: var(--card-header);
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
@@ -79,8 +79,8 @@ body::before {
 h1 {
   text-align: center;
   color: var(--header-text);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-  font-size: 2.6em;
+  text-shadow: 0 1.5px 3px rgba(0,0,0,0.5);
+  font-size: 2.2em; /* kleiner */
   margin-top: 1rem;
   position: relative;
   z-index: 1;
@@ -91,20 +91,21 @@ form label {
   font-weight: 600;
   color: var(--text);
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
 form input,
 form textarea,
 form select {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   background: #ffffff;
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 1rem;
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-size: 0.95rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -119,11 +120,12 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 small {
   color: var(--muted);
+  font-size: 0.85rem;
 }
 
 /* Button */
@@ -132,12 +134,12 @@ small {
   color: var(--button-text);
   border: none;
   cursor: pointer;
-  padding: 14px 24px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 15px;
   font-weight: 600;
-  border-radius: 12px;
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.22);
   position: relative;
   overflow: hidden;
 }
@@ -165,13 +167,13 @@ small {
 
 #btn:hover {
   background: linear-gradient(135deg, #2f5ee0 0%, #1e3fa6 100%);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
-  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1.5px);
 }
 
 #btn:active {
   transform: translateY(0);
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
 /* Console / Debug output */
@@ -180,10 +182,10 @@ pre#out {
   color: #e2e8f0;
   border: 1px solid #1f2937;
   border-radius: 8px;
-  padding: 12px;
+  padding: 10px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
-  max-height: 300px;
+  box-shadow: 0 4px 15px rgba(2, 6, 23, 0.25);
+  max-height: 280px;
   overflow-y: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -191,11 +193,11 @@ pre#out {
 
 /* Call-Center Box */
 .number {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   background-color: #111827;
   border: 1px solid #1f2937;
   border-radius: 10px;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 0.9rem;
   display: inline-block;
   margin-top: 1rem;
   color: #ffffff;
@@ -219,6 +221,6 @@ aside.card {
     height: auto;
   }
   h1 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }

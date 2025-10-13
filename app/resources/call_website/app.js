@@ -7,55 +7,25 @@ const defaultPayload = {
   prosody_rate: 1.00,
   lang: {
     default_short_code: "de-DE",
-    availables: [{ pronunciations_en: ["German","DE","Germany"], short_code: "de-DE", voice: "de-DE-FlorianMultilingualNeural" }]
+    availables: [
+      {
+        pronunciations_en: ["German", "DE", "Germany"],
+        short_code: "de-DE",
+        voice: "de-DE-FlorianMultilingualNeural"
+      }
+    ]
   },
   claim: [
-    {
-      "description": "Vorname des Schuldners",
-      "name": "vorname",
-      "type": "text"
-    },
-    {
-      "description": "Nachname des Schuldners",
-      "name": "nachname",
-      "type": "text"
-    },
-    {
-      "description": "Kennzeichen des Fahrzeugs",
-      "name": "kennzeichen",
-      "type": "text"
-    },
-    {
-      "description": "Aktenzeichen oder Referenznummer der Forderung",
-      "name": "aktenzeichen",
-      "type": "text"
-    },
-    {
-      "description": "Alternative Telefonnummer für Rückfragen",
-      "name": "alternative_telefonnummer",
-      "type": "phone_number"
-    },
-    {
-      "description": "Direktzahlung vereinbart? (Ja/Nein)",
-      "name": "direkt_zahlung",
-      "type": "text"
-    },
-    {
-      "description": "Ratenzahlung vereinbart? (Ja/Nein)",
-      "name": "ratenzahlung",
-      "type": "text"
-    },
-    {
-      "description": "Höhe der Raten bei Ratenzahlung",
-      "name": "ratenhoehe",
-      "type": "text"
-    },
-    {
-      "description": "Datum des Beginns der Zahlung oder ersten Rate",
-      "name": "zahlungsbeginn",
-      "type": "datetime"
-    }
-  ],
+    { description: "Vorname des Schuldners", name: "vorname", type: "text" },
+    { description: "Nachname des Schuldners", name: "nachname", type: "text" },
+    { description: "Kennzeichen des Fahrzeugs", name: "kennzeichen", type: "text" },
+    { description: "Aktenzeichen oder Referenznummer der Forderung", name: "aktenzeichen", type: "text" },
+    { description: "Alternative Telefonnummer für Rückfragen", name: "alternative_telefonnummer", type: "phone_number" },
+    { description: "Direktzahlung vereinbart? (Ja/Nein)", name: "direkt_zahlung", type: "text" },
+    { description: "Ratenzahlung vereinbart? (Ja/Nein)", name: "ratenzahlung", type: "text" },
+    { description: "Höhe der Raten bei Ratenzahlung", name: "ratenhoehe", type: "text" },
+    { description: "Datum des Beginns der Zahlung oder ersten Rate", name: "zahlungsbeginn", type: "datetime" }
+  ]
 };
 
 const form = document.getElementById("f");
@@ -72,6 +42,13 @@ const ratenhoeheInput = document.getElementById("ratenhoehe");
 function buildPayload(overrides = {}, claimValues = {}) {
   const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural";
   const selectedVoiceName = voiceSelect.options[voiceSelect.selectedIndex].text.trim() || "Florian";
+  const langShortCode = selectedVoice.split("-").slice(0, 2).join("-");
+
+
+  const enrichedClaim = defaultPayload.claim.map(field => ({
+    ...field,
+    value: claimValues[field.name] || ""
+  }));
 
   return {
     initiate: {
@@ -79,15 +56,17 @@ function buildPayload(overrides = {}, claimValues = {}) {
       ...overrides,
       bot_name: selectedVoiceName,
       lang: {
-        default_short_code: selectedVoice.split("-").slice(0, 2).join("-"),
-        availables: [{
-          pronunciations_en: ["German", "DE", "Germany"],
-          short_code: selectedVoice.split("-").slice(0, 2).join("-"),
-          voice: selectedVoice
-        }]
-      }
-    },
-    claim: claimValues
+        default_short_code: langShortCode,
+        availables: [
+          {
+            pronunciations_en: ["German", "DE", "Germany"],
+            short_code: langShortCode,
+            voice: selectedVoice
+          }
+        ]
+      },
+      claim: enrichedClaim
+    }
   };
 }
 
@@ -109,13 +88,13 @@ form.addEventListener("submit", async (e) => {
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
   const ratenzahlung = (ratenzahlungInput?.value || "").trim();
   const ratenhoehe = (ratenhoeheInput?.value || "").trim();
+
   const claimValues = {
     vorname: "Max",
     nachname: "Müller",
     ratenzahlung,
     ratenhoehe
   };
-
 
   if (!phone) return;
 
@@ -124,10 +103,10 @@ form.addEventListener("submit", async (e) => {
 
   try {
     const payload = buildPayload({
-    phone_number: phone,
-    task: task || defaultPayload.task,
-    prosody_rate: prosodyRate
-  }, claimValues);
+      phone_number: phone,
+      task: task || defaultPayload.task,
+      prosody_rate: prosodyRate
+    }, claimValues);
 
     const res = await postCall(payload);
     out.textContent = (res.ok ? "" : "Fehler ") + "(" + res.status + "):\n" + JSON.stringify(res.data, null, 2);
