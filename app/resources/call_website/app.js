@@ -44,31 +44,29 @@ function buildPayload(overrides = {}, claimValues = {}) {
   const selectedVoiceName = voiceSelect.options[voiceSelect.selectedIndex].text.trim() || "Florian";
   const langShortCode = selectedVoice.split("-").slice(0, 2).join("-");
 
-
   const enrichedClaim = defaultPayload.claim.map(field => ({
     ...field,
     value: claimValues[field.name] || ""
   }));
 
   return {
-    initiate: {
-      ...defaultPayload,
-      ...overrides,
-      bot_name: selectedVoiceName,
-      lang: {
-        default_short_code: langShortCode,
-        availables: [
-          {
-            pronunciations_en: ["German", "DE", "Germany"],
-            short_code: langShortCode,
-            voice: selectedVoice
-          }
-        ]
-      },
-      claim: enrichedClaim
-    }
+    ...defaultPayload,
+    ...overrides,
+    bot_name: selectedVoiceName,
+    lang: {
+      default_short_code: langShortCode,
+      availables: [
+        {
+          pronunciations_en: ["German", "DE", "Germany"],
+          short_code: langShortCode,
+          voice: selectedVoice
+        }
+      ]
+    },
+    claim: enrichedClaim
   };
 }
+
 
 async function postCall(payload) {
   const res = await fetch("/call", {
