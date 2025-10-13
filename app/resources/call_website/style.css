@@ -35,18 +35,21 @@ body::before {
   pointer-events: none;
 }
 
+/* Container Grid */
 .container {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr; /* zweite Card breiter */
-  align-items: start;
+  grid-template-columns: 1.5fr 2fr 1fr; /* mittlere Spalte breiter */
   gap: 2rem;
   padding: 3rem;
-  height: 100vh;
-  position: relative;
-  z-index: 1;
+  align-items: start;
 }
 
+/* Form über zwei Cards */
+.two-cards-form {
+  display: contents;
+}
 
+/* Card-Styling */
 .card {
   background: var(--card-bg);
   backdrop-filter: blur(6px) saturate(120%);
@@ -60,9 +63,10 @@ body::before {
 
 .card textarea {
   width: 100%;
-  min-height: 120px; /* mehr Platz */
+  min-height: 120px;
   resize: vertical;
 }
+
 .card h2 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -71,6 +75,7 @@ body::before {
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
+/* Headline */
 h1 {
   text-align: center;
   color: var(--header-text);
@@ -94,7 +99,7 @@ form textarea,
 form select {
   width: 100%;
   margin-bottom: 1rem;
-  background: #ffffff; /* hell */
+  background: #ffffff;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -102,7 +107,6 @@ form select {
   font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 input::placeholder,
 textarea::placeholder,
@@ -123,27 +127,51 @@ small {
 }
 
 /* Button */
-button {
-  background-color: var(--primary);
+#btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
   color: var(--button-text);
   border: none;
   cursor: pointer;
-  padding: 12px;
+  padding: 14px 24px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 8px;
-  transition: background 0.2s ease, transform 0.08s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  border-radius: 12px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
+/* sanfter Glanzeffekt */
+#btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.4s ease;
 }
 
-button:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.5);
-  outline-offset: 2px;
+#btn:hover::before {
+  left: 120%;
+}
+
+#btn:hover {
+  background: linear-gradient(135deg, #2f5ee0 0%, #1e3fa6 100%);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px);
+}
+
+#btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
 }
 
 /* Console / Debug output */
@@ -155,14 +183,13 @@ pre#out {
   padding: 12px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
-
-  max-height: 300px;   /* max. Höhe, kann nach Bedarf angepasst werden */
-  overflow-y: auto;    /* scrollt, wenn Inhalt größer als max-height */
-  white-space: pre-wrap; /* Zeilen umbrechen */
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-/* Call-Center Number */
+/* Call-Center Box */
 .number {
   font-size: 1.5rem;
   background-color: #111827;
@@ -176,6 +203,14 @@ pre#out {
   letter-spacing: 0.3px;
 }
 
+/* rechte Box kleiner machen */
+aside.card {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .container {
@@ -186,29 +221,4 @@ pre#out {
   h1 {
     font-size: 2em;
   }
-}
-
-/* Task-Überschrift wie H2 */
-#task {
-  /* Entfernt Input-Styling für Überschrift */
-  height: auto;
-  resize: vertical;
-  min-height: 60px;
-}
-#task-label {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--card-header);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* drei Spalten */
-  gap: 2rem;
-  padding: 3rem;
-}
-
-.two-cards-form {
-  display: contents; /* sorgt dafür, dass die Form die beiden Cards NICHT blockiert */
 }

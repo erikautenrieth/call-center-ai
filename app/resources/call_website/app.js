@@ -69,20 +69,25 @@ const btn = document.getElementById("btn");
 const ratenzahlungInput = document.getElementById("ratenzahlung");
 const ratenhoeheInput = document.getElementById("ratenhoehe");
 
-function buildPayload(overrides = {}) {
-  const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural4";
+function buildPayload(overrides = {}, claimValues = {}) {
+  const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural";
+  const selectedVoiceName = voiceSelect.options[voiceSelect.selectedIndex].text.trim() || "Florian";
 
   return {
-    ...defaultPayload,
-    ...overrides,
-    lang: {
-      default_short_code: selectedVoice.split("-").slice(0, 2).join("-"), // z. B. "de-DE", "de-AT"
-      availables: [{
-        pronunciations_en: ["German", "DE", "Germany"],
-        short_code: selectedVoice.split("-").slice(0, 2).join("-"),
-        voice: selectedVoice
-      }]
-    }
+    initiate: {
+      ...defaultPayload,
+      ...overrides,
+      bot_name: selectedVoiceName,
+      lang: {
+        default_short_code: selectedVoice.split("-").slice(0, 2).join("-"),
+        availables: [{
+          pronunciations_en: ["German", "DE", "Germany"],
+          short_code: selectedVoice.split("-").slice(0, 2).join("-"),
+          voice: selectedVoice
+        }]
+      }
+    },
+    claim: claimValues
   };
 }
 
@@ -104,11 +109,13 @@ form.addEventListener("submit", async (e) => {
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
   const ratenzahlung = (ratenzahlungInput?.value || "").trim();
   const ratenhoehe = (ratenhoeheInput?.value || "").trim();
-  const claimData = defaultPayload.claim.map(c => ({
-    ...c,
-    value: c.name === "ratenzahlung" ? ratenzahlung :
-          c.name === "ratenhoehe" ? ratenhoehe : ""
-  }));
+  const claimValues = {
+    vorname: "Max",
+    nachname: "Müller",
+    ratenzahlung,
+    ratenhoehe
+  };
+
 
   if (!phone) return;
 
@@ -117,11 +124,10 @@ form.addEventListener("submit", async (e) => {
 
   try {
     const payload = buildPayload({
-      phone_number: phone,
-      task: String(task || defaultPayload.task),
-      prosody_rate: prosodyRate,
-      claim: claimData
-    });
+    phone_number: phone,
+    task: task || defaultPayload.task,
+    prosody_rate: prosodyRate
+  }, claimValues);
 
     const res = await postCall(payload);
     out.textContent = (res.ok ? "" : "Fehler ") + "(" + res.status + "):\n" + JSON.stringify(res.data, null, 2);
