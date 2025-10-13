@@ -62,12 +62,26 @@ const form = document.getElementById("f");
 const phoneInput = document.getElementById("phone");
 const taskInput = document.getElementById("task");
 const prosodyRateInput = document.getElementById("prosody_rate");
+const voiceSelect = document.getElementById("voiceSelect");
 const out = document.getElementById("out");
 const btn = document.getElementById("btn");
 
 
 function buildPayload(overrides = {}) {
-  return { ...defaultPayload, ...overrides };
+  const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural4";
+
+  return {
+    ...defaultPayload,
+    ...overrides,
+    lang: {
+      default_short_code: selectedVoice.split("-").slice(0, 2).join("-"), // z. B. "de-DE", "de-AT"
+      availables: [{
+        pronunciations_en: ["German", "DE", "Germany"], // Optional, oder dynamisch ändern
+        short_code: selectedVoice.split("-").slice(0, 2).join("-"),
+        voice: selectedVoice
+      }]
+    }
+  };
 }
 
 async function postCall(payload) {
