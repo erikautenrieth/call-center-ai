@@ -27,7 +27,6 @@
           <h2>Outbound Call</h2>
           <label for="phone">Telefonnummer</label>
           <input id="phone" name="phone" type="tel" placeholder="+49777888777" required pattern="^\+[0-9]{6,15}$" />
-
           <label for="voiceSelect">Stimme</label>
                   <select id="voiceSelect" name="voiceSelect" required>
                   <optgroup label="🇩🇪 Deutschland">
@@ -59,7 +58,6 @@
                     <option value="de-CH-JanNeural">Jan</option>
                   </optgroup>
                 </select>
-
           <label for="prosody_rate">Sprechgeschwindigkeit</label>
           <input id="prosody_rate" name="prosody_rate" type="number" step="0.01" min="0.75" max="1.25" value="1.00" required />
           <small id="prosody-help">0.75–1.25 (1 = normal)</small>
@@ -71,9 +69,10 @@
           <label for="task">Task</label>
           <textarea id="task" name="task" placeholder="Beschreibe die Aufgabe für den Bot." maxlength="2000" rows="4"></textarea>
 
-          <input type="text" placeholder="Eingabefeld 1" />
-          <input type="text" placeholder="Eingabefeld 2" />
-          <input type="text" placeholder="Eingabefeld 3" />
+          <label for="ratenzahlung">Ratenzahlung</label>
+          <input id="ratenzahlung" name="ratenzahlung" type="text" placeholder="Ja oder Nein" />
+          <label for="ratenhoehe">Höhe der Raten</label>
+          <input id="ratenhoehe" name="ratenhoehe" type="text" placeholder="z.B. 50€" />
 
           <button id="btn" type="submit">Start</button>
           <pre id="out" aria-live="polite" role="status"></pre>

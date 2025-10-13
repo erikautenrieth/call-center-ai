@@ -37,7 +37,7 @@ body::before {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr; /* zweite Card breiter */
   align-items: start;
   gap: 2rem;
   padding: 3rem;
@@ -45,6 +45,7 @@ body::before {
   position: relative;
   z-index: 1;
 }
+
 
 .card {
   background: var(--card-bg);
@@ -55,6 +56,12 @@ body::before {
   border: 1px solid var(--border);
   position: relative;
   z-index: 1;
+}
+
+.card textarea {
+  width: 100%;
+  min-height: 120px; /* mehr Platz */
+  resize: vertical;
 }
 
 .card h2 {

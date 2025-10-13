@@ -66,6 +66,8 @@ const voiceSelect = document.getElementById("voiceSelect");
 const out = document.getElementById("out");
 const btn = document.getElementById("btn");
 
+const ratenzahlungInput = document.getElementById("ratenzahlung");
+const ratenhoeheInput = document.getElementById("ratenhoehe");
 
 function buildPayload(overrides = {}) {
   const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural4";
@@ -76,7 +78,7 @@ function buildPayload(overrides = {}) {
     lang: {
       default_short_code: selectedVoice.split("-").slice(0, 2).join("-"), // z. B. "de-DE", "de-AT"
       availables: [{
-        pronunciations_en: ["German", "DE", "Germany"], // Optional, oder dynamisch ändern
+        pronunciations_en: ["German", "DE", "Germany"],
         short_code: selectedVoice.split("-").slice(0, 2).join("-"),
         voice: selectedVoice
       }]
@@ -100,6 +102,13 @@ form.addEventListener("submit", async (e) => {
   const phone = phoneInput.value.trim();
   const task = (taskInput?.value || "").trim();
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
+  const ratenzahlung = (ratenzahlungInput?.value || "").trim();
+  const ratenhoehe = (ratenhoeheInput?.value || "").trim();
+  const claimData = defaultPayload.claim.reduce((acc, c) => {
+  acc[c.name] = c.name === "ratenzahlung" ? ratenzahlung :
+                 c.name === "ratenhoehe" ? ratenhoehe : "";
+  return acc;
+}, {});
 
   if (!phone) return;
 
@@ -110,7 +119,8 @@ form.addEventListener("submit", async (e) => {
     const payload = buildPayload({
       phone_number: phone,
       task: String(task || defaultPayload.task),
-      prosody_rate: prosodyRate
+      prosody_rate: prosodyRate,
+      claim: claimData
     });
 
     const res = await postCall(payload);
