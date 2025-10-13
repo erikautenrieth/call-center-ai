@@ -5,33 +5,9 @@
     <title>Azure Call Center Agent</title>
 
     <!-- Pico.css -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css"
-    />
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Lokales CSS -->
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-
- <!doctype html>
-<html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Azure Call Center Agent</title>
-
-    <!-- Pico.css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css" />
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
@@ -44,7 +20,7 @@
     <h1>AI Call Center</h1>
 
     <div class="container">
-      <!-- LEFT -->
+      <!-- LEFT SECTION: Outbound Call -->
       <section class="card">
         <h2>Outbound Call</h2>
         <form id="f">
@@ -55,43 +31,41 @@
             type="tel"
             placeholder="+49777888777"
             required
-            pattern="^\\+[0-9]{6,15}$"
+            pattern="^\+[0-9]{6,15}$"
           />
-    <label for="voiceSelect">Stimme:</label>
-    <select id="voiceSelect" name="voiceSelect" required>
-      <optgroup label="🇩🇪 Deutschland">
-        <option value="de-DE-FlorianMultilingualNeural4" selected>Florian</option>
-        <option value="de-DE-KatjaNeural">Katja</option>
-        <option value="de-DE-ConradNeural">Conrad</option>
-        <option value="de-DE-SeraphinaMultilingualNeural4">Seraphina</option>
-        <option value="de-DE-AmalaNeural">Amala</option>
-        <option value="de-DE-BerndNeural">Bernd</option>
-        <option value="de-DE-ChristophNeural">Christoph</option>
-        <option value="de-DE-ElkeNeural">Elke</option>
-        <option value="de-DE-KasperNeural">Kasper</option>
-        <option value="de-DE-KillianNeural">Killian</option>
-        <option value="de-DE-KlarissaNeural">Klarissa</option>
-        <option value="de-DE-KlausNeural">Klaus</option>
-        <option value="de-DE-LouisaNeural">Louisa</option>
-        <option value="de-DE-MajaNeural">Maja</option>
-        <option value="de-DE-RalfNeural">Ralf</option>
-        <option value="de-DE-TanjaNeural">Tanja</option>
-        <option value="de-DE-Florian:DragonHDLatestNeural">Florian HD</option>
-        <option value="de-DE-Seraphina:DragonHDLatestNeural">Seraphina HD</option>
-      </optgroup>
+          <label for="voiceSelect">Stimme</label>
+          <select id="voiceSelect" name="voiceSelect" required>
+            <optgroup label="🇩🇪 Deutschland">
+              <option value="de-DE-FlorianMultilingualNeural" selected>Florian</option>
+              <option value="de-DE-KatjaNeural">Katja</option>
+              <option value="de-DE-ConradNeural">Conrad</option>
+              <option value="de-DE-SeraphinaMultilingualNeural">Seraphina</option>
+              <option value="de-DE-AmalaNeural">Amala</option>
+              <option value="de-DE-BerndNeural">Bernd</option>
+              <option value="de-DE-ChristophNeural">Christoph</option>
+              <option value="de-DE-ElkeNeural">Elke</option>
+              <option value="de-DE-KasperNeural">Kasper</option>
+              <option value="de-DE-KillianNeural">Killian</option>
+              <option value="de-DE-KlarissaNeural">Klarissa</option>
+              <option value="de-DE-KlausNeural">Klaus</option>
+              <option value="de-DE-LouisaNeural">Louisa</option>
+              <option value="de-DE-MajaNeural">Maja</option>
+              <option value="de-DE-RalfNeural">Ralf</option>
+              <option value="de-DE-TanjaNeural">Tanja</option>
+              <option value="de-DE-Florian:DragonHDLatestNeural">Florian HD</option>
+              <option value="de-DE-Seraphina:DragonHDLatestNeural">Seraphina HD</option>
+            </optgroup>
 
-      <optgroup label="🇦🇹 Österreich">
-        <option value="de-AT-IngridNeural">Ingrid</option>
-        <option value="de-AT-JonasNeural">Jonas</option>
-      </optgroup>
+            <optgroup label="🇦🇹 Österreich">
+              <option value="de-AT-IngridNeural">Ingrid</option>
+              <option value="de-AT-JonasNeural">Jonas</option>
+            </optgroup>
 
-      <optgroup label="🇨🇭 Schweiz">
-        <option value="de-CH-LeniNeural">Leni</option>
-        <option value="de-CH-JanNeural">Jan</option>
-      </optgroup>
-    </select>
-
-
+            <optgroup label="🇨🇭 Schweiz">
+              <option value="de-CH-LeniNeural">Leni</option>
+              <option value="de-CH-JanNeural">Jan</option>
+            </optgroup>
+          </select>
 
           <label for="prosody_rate">Sprechgeschwindigkeit</label>
           <input
@@ -104,10 +78,7 @@
             value="1.00"
             required
           />
-          <small id="prosody-help"> 1.00 = normal, < 1 = langsamer, >1 = schneller</small>
-
-
-
+          <small id="prosody-help">1.00 = normal, &lt;1 = langsamer, &gt;1 = schneller</small>
 
           <button id="btn" type="submit">Start</button>
 
@@ -116,24 +87,24 @@
         </form>
       </section>
 
-      <!-- MIDDLE -->
+      <!-- MIDDLE SECTION: Konfiguration -->
       <section class="card">
         <h2>Konfiguration</h2>
         <label for="task">Task</label>
         <textarea
-              id="task"
-              name="task"
-              placeholder="Beschreibe die Aufgabe für den Bot."
-              maxlength="2000"
-              rows="4"
-                ></textarea>
+          id="task"
+          name="task"
+          placeholder="Beschreibe die Aufgabe für den Bot."
+          maxlength="2000"
+          rows="4"
+        ></textarea>
 
         <input type="text" placeholder="Eingabefeld 1" />
         <input type="text" placeholder="Eingabefeld 2" />
         <input type="text" placeholder="Eingabefeld 3" />
       </section>
 
-      <!-- RIGHT -->
+      <!-- RIGHT SECTION: Call-Center Kontakt -->
       <aside class="card">
         <h2>Call-Center anrufen</h2>
         <div class="number">+3280029964</div>

@@ -9,7 +9,7 @@
   --primary-hover: #1e40af;
   --button-text: #ffffff;
   --header-text: #ffffff;
-  --card-header: #1f2937; /* NEU */
+  --card-header: #1f2937;
 }
 
 html, body {
@@ -61,48 +61,51 @@ body::before {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--card-header); /* Kontrastreicherer Farbton */
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  color: var(--card-header);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  color: var(--header-text);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
   font-size: 2.6em;
   margin-top: 1rem;
   position: relative;
   z-index: 1;
 }
 
+/* Formularelemente */
 form label {
   font-weight: 600;
   color: var(--text);
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 form input,
 form textarea,
-form button {
+form select {
   width: 100%;
   margin-bottom: 1rem;
-}
-
-input, textarea {
-  background: #ffffff;
+  background: #ffffff; /* hell */
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 12px;
+  font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input::placeholder,
-textarea::placeholder {
+textarea::placeholder,
+select::placeholder {
   color: #6b7280;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
@@ -112,6 +115,7 @@ small {
   color: var(--muted);
 }
 
+/* Button */
 button {
   background-color: var(--primary);
   color: var(--button-text);
@@ -135,6 +139,7 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Console / Debug output */
 pre#out {
   background: #0b1220;
   color: #e2e8f0;
@@ -145,6 +150,7 @@ pre#out {
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
 }
 
+/* Call-Center Number */
 .number {
   font-size: 1.5rem;
   background-color: #111827;
@@ -158,6 +164,7 @@ pre#out {
   letter-spacing: 0.3px;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;
@@ -167,4 +174,19 @@ pre#out {
   h1 {
     font-size: 2em;
   }
+}
+
+/* Task-Überschrift wie H2 */
+#task {
+  /* Entfernt Input-Styling für Überschrift */
+  height: auto;
+  resize: vertical;
+  min-height: 60px;
+}
+#task-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--card-header);
+  margin-bottom: 0.5rem;
+  display: block;
 }

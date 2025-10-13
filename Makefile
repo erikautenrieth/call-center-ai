@@ -143,6 +143,7 @@ build-push:
 	az containerapp update --name call-center-ai --resource-group zq-uz --image $(container_name):latest
 
 build-push-azure:
+	az acr login --name callcenterairegistry
 	$(MAKE) build
 	docker image push $(container_name):$(version_small)
 	docker image push $(container_name):latest
