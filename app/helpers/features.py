@@ -31,7 +31,7 @@ async def answer_soft_timeout_sec() -> int:
     Time waiting the LLM before sending a waiting message.
     """
     return await _default(
-        default=1,  # 3
+        default=3,  # 3
         key="answer_soft_timeout_sec",
         type_res=int,
     )
@@ -53,7 +53,7 @@ async def phone_silence_timeout_sec() -> int:
     Amount of silence in secs to trigger a warning message from the assistant.
     """
     return await _default(
-        default=10,  # 20
+        default=20,  # 20
         key="phone_silence_timeout_sec",
         type_res=int,
     )
@@ -64,7 +64,7 @@ async def vad_threshold() -> float:
     The threshold for voice activity detection. Between 0.1 and 1.
     """
     return await _default(
-        default=0.8,  # 0.5
+        default=0.5,  # 0.5
         key="vad_threshold",
         max_incl=1,  # 1
         min_incl=0.1,  # 0.1
@@ -77,7 +77,7 @@ async def vad_silence_timeout_ms() -> int:
     Silence to trigger voice activity detection in milliseconds.
     """
     return await _default(
-        default=250,  # 500
+        default=500,  # 500
         key="vad_silence_timeout_ms",
         type_res=int,
     )
@@ -88,7 +88,7 @@ async def vad_cutoff_timeout_ms() -> int:
     The cutoff timeout for voice activity detection in milliseconds.
     """
     return await _default(
-        default=600,  # 250
+        default=250,  # 250
         key="vad_cutoff_timeout_ms",
         type_res=int,
     )
@@ -133,7 +133,7 @@ async def recognition_stt_complete_timeout_ms() -> int:
     The timeout for STT completion in milliseconds.
     """
     return await _default(
-        default=180,  # 100
+        default=100,  # 100
         key="recognition_stt_complete_timeout_ms",
         type_res=int,
     )
