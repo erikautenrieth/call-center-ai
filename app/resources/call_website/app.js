@@ -104,11 +104,11 @@ form.addEventListener("submit", async (e) => {
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
   const ratenzahlung = (ratenzahlungInput?.value || "").trim();
   const ratenhoehe = (ratenhoeheInput?.value || "").trim();
-  const claimData = defaultPayload.claim.reduce((acc, c) => {
-  acc[c.name] = c.name === "ratenzahlung" ? ratenzahlung :
-                 c.name === "ratenhoehe" ? ratenhoehe : "";
-  return acc;
-}, {});
+  const claimData = defaultPayload.claim.map(c => ({
+    ...c,
+    value: c.name === "ratenzahlung" ? ratenzahlung :
+          c.name === "ratenhoehe" ? ratenhoehe : ""
+  }));
 
   if (!phone) return;
 

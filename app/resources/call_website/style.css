@@ -63,7 +63,6 @@ body::before {
   min-height: 120px; /* mehr Platz */
   resize: vertical;
 }
-
 .card h2 {
   font-size: 1.5rem;
   font-weight: 700;
