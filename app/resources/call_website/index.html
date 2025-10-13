@@ -20,96 +20,73 @@
     <h1>AI Call Center</h1>
 
     <div class="container">
-      <!-- LEFT SECTION: Outbound Call -->
-      <section class="card">
-        <h2>Outbound Call</h2>
-        <form id="f">
+      <!-- EINZIGE FORM über zwei Cards -->
+      <form id="f" class="two-cards-form">
+        <!-- LEFT SECTION -->
+        <section class="card">
+          <h2>Outbound Call</h2>
           <label for="phone">Telefonnummer</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="+49777888777"
-            required
-            pattern="^\+[0-9]{6,15}$"
-          />
+          <input id="phone" name="phone" type="tel" placeholder="+49777888777" required pattern="^\+[0-9]{6,15}$" />
+
           <label for="voiceSelect">Stimme</label>
-          <select id="voiceSelect" name="voiceSelect" required>
-            <optgroup label="🇩🇪 Deutschland">
-              <option value="de-DE-FlorianMultilingualNeural" selected>Florian</option>
-              <option value="de-DE-KatjaNeural">Katja</option>
-              <option value="de-DE-ConradNeural">Conrad</option>
-              <option value="de-DE-SeraphinaMultilingualNeural">Seraphina</option>
-              <option value="de-DE-AmalaNeural">Amala</option>
-              <option value="de-DE-BerndNeural">Bernd</option>
-              <option value="de-DE-ChristophNeural">Christoph</option>
-              <option value="de-DE-ElkeNeural">Elke</option>
-              <option value="de-DE-KasperNeural">Kasper</option>
-              <option value="de-DE-KillianNeural">Killian</option>
-              <option value="de-DE-KlarissaNeural">Klarissa</option>
-              <option value="de-DE-KlausNeural">Klaus</option>
-              <option value="de-DE-LouisaNeural">Louisa</option>
-              <option value="de-DE-MajaNeural">Maja</option>
-              <option value="de-DE-RalfNeural">Ralf</option>
-              <option value="de-DE-TanjaNeural">Tanja</option>
-              <option value="de-DE-Florian:DragonHDLatestNeural">Florian HD</option>
-              <option value="de-DE-Seraphina:DragonHDLatestNeural">Seraphina HD</option>
-            </optgroup>
-
-            <optgroup label="🇦🇹 Österreich">
-              <option value="de-AT-IngridNeural">Ingrid</option>
-              <option value="de-AT-JonasNeural">Jonas</option>
-            </optgroup>
-
-            <optgroup label="🇨🇭 Schweiz">
-              <option value="de-CH-LeniNeural">Leni</option>
-              <option value="de-CH-JanNeural">Jan</option>
-            </optgroup>
-          </select>
+                  <select id="voiceSelect" name="voiceSelect" required>
+                  <optgroup label="🇩🇪 Deutschland">
+                    <option value="de-DE-FlorianMultilingualNeural" selected>Florian</option>
+                    <option value="de-DE-KatjaNeural">Katja</option>
+                    <option value="de-DE-ConradNeural">Conrad</option>
+                    <option value="de-DE-SeraphinaMultilingualNeural">Seraphina</option>
+                    <option value="de-DE-AmalaNeural">Amala</option>
+                    <option value="de-DE-BerndNeural">Bernd</option>
+                    <option value="de-DE-ChristophNeural">Christoph</option>
+                    <option value="de-DE-ElkeNeural">Elke</option>
+                    <option value="de-DE-KasperNeural">Kasper</option>
+                    <option value="de-DE-KillianNeural">Killian</option>
+                    <option value="de-DE-KlarissaNeural">Klarissa</option>
+                    <option value="de-DE-KlausNeural">Klaus</option>
+                    <option value="de-DE-LouisaNeural">Louisa</option>
+                    <option value="de-DE-MajaNeural">Maja</option>
+                    <option value="de-DE-RalfNeural">Ralf</option>
+                    <option value="de-DE-TanjaNeural">Tanja</option>
+                    <option value="de-DE-Florian:DragonHDLatestNeural">Florian HD</option>
+                    <option value="de-DE-Seraphina:DragonHDLatestNeural">Seraphina HD</option>
+                  </optgroup>
+                  <optgroup label="🇦🇹 Österreich">
+                    <option value="de-AT-IngridNeural">Ingrid</option>
+                    <option value="de-AT-JonasNeural">Jonas</option>
+                  </optgroup>
+                  <optgroup label="🇨🇭 Schweiz">
+                    <option value="de-CH-LeniNeural">Leni</option>
+                    <option value="de-CH-JanNeural">Jan</option>
+                  </optgroup>
+                </select>
 
           <label for="prosody_rate">Sprechgeschwindigkeit</label>
-          <input
-            id="prosody_rate"
-            name="prosody_rate"
-            type="number"
-            step="0.01"
-            min="0.75"
-            max="1.25"
-            value="1.00"
-            required
-          />
-          <small id="prosody-help">1.00 = normal, &lt;1 = langsamer, &gt;1 = schneller</small>
+          <input id="prosody_rate" name="prosody_rate" type="number" step="0.01" min="0.75" max="1.25" value="1.00" required />
+          <small id="prosody-help">0.75–1.25 (1 = normal)</small>
+        </section>
+
+        <!-- MIDDLE SECTION -->
+        <section class="card">
+          <h2>Konfiguration</h2>
+          <label for="task">Task</label>
+          <textarea id="task" name="task" placeholder="Beschreibe die Aufgabe für den Bot." maxlength="2000" rows="4"></textarea>
+
+          <input type="text" placeholder="Eingabefeld 1" />
+          <input type="text" placeholder="Eingabefeld 2" />
+          <input type="text" placeholder="Eingabefeld 3" />
 
           <button id="btn" type="submit">Start</button>
-
-          <!-- Console / Debug / Response output -->
           <pre id="out" aria-live="polite" role="status"></pre>
-        </form>
-      </section>
+        </section>
+      </form>
 
-      <!-- MIDDLE SECTION: Konfiguration -->
-      <section class="card">
-        <h2>Konfiguration</h2>
-        <label for="task">Task</label>
-        <textarea
-          id="task"
-          name="task"
-          placeholder="Beschreibe die Aufgabe für den Bot."
-          maxlength="2000"
-          rows="4"
-        ></textarea>
-
-        <input type="text" placeholder="Eingabefeld 1" />
-        <input type="text" placeholder="Eingabefeld 2" />
-        <input type="text" placeholder="Eingabefeld 3" />
-      </section>
-
-      <!-- RIGHT SECTION: Call-Center Kontakt -->
+      <!-- RIGHT SECTION bleibt außen -->
       <aside class="card">
         <h2>Call-Center anrufen</h2>
         <div class="number">+3280029964</div>
       </aside>
     </div>
+
 
     <!-- Lokales JS -->
     <script src="./app.js"></script>

@@ -97,6 +97,7 @@ form select {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
@@ -148,6 +149,11 @@ pre#out {
   padding: 12px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.35);
+
+  max-height: 300px;   /* max. Höhe, kann nach Bedarf angepasst werden */
+  overflow-y: auto;    /* scrollt, wenn Inhalt größer als max-height */
+  white-space: pre-wrap; /* Zeilen umbrechen */
+  word-wrap: break-word;
 }
 
 /* Call-Center Number */
@@ -189,4 +195,14 @@ pre#out {
   color: var(--card-header);
   margin-bottom: 0.5rem;
   display: block;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* drei Spalten */
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.two-cards-form {
+  display: contents; /* sorgt dafür, dass die Form die beiden Cards NICHT blockiert */
 }
