@@ -72,7 +72,6 @@ class LlmModel(BaseModel):
         # Definitions
 
         ## Means of contact
-        - By SMS, during or after the call
         - By voice, now with the customer (voice recognition may contain errors)
 
         ## Actions
@@ -287,7 +286,7 @@ class LlmModel(BaseModel):
         Choose the next action from the company sales team perspective. The respond is the action to take and the justification for this action.
 
         # Rules
-        - Answers in English, even if the customer speaks another language
+        - Answers in German, even if the customer speaks another language
         - Be concise
         - Take as priority the customer satisfaction
         - Won't make any assumptions
