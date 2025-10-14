@@ -36,18 +36,11 @@ const voiceSelect = document.getElementById("voiceSelect");
 const out = document.getElementById("out");
 const btn = document.getElementById("btn");
 
-const ratenzahlungInput = document.getElementById("ratenzahlung");
-const ratenhoeheInput = document.getElementById("ratenhoehe");
 
-function buildPayload(overrides = {}, claimValues = {}) {
+function buildPayload(overrides = {}) {
   const selectedVoice = voiceSelect.value || "de-DE-FlorianMultilingualNeural";
   const selectedVoiceName = voiceSelect.options[voiceSelect.selectedIndex].text.trim() || "Florian";
   const langShortCode = selectedVoice.split("-").slice(0, 2).join("-");
-
-  const enrichedClaim = defaultPayload.claim.map(field => ({
-    ...field,
-    value: claimValues[field.name] || ""
-  }));
 
   return {
     ...defaultPayload,
@@ -63,7 +56,6 @@ function buildPayload(overrides = {}, claimValues = {}) {
         }
       ]
     },
-    claim: enrichedClaim
   };
 }
 
@@ -84,15 +76,7 @@ form.addEventListener("submit", async (e) => {
   const phone = phoneInput.value.trim();
   const task = (taskInput?.value || "").trim();
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
-  const ratenzahlung = (ratenzahlungInput?.value || "").trim();
-  const ratenhoehe = (ratenhoeheInput?.value || "").trim();
 
-  const claimValues = {
-    vorname: "Max",
-    nachname: "Müller",
-    ratenzahlung,
-    ratenhoehe
-  };
 
   if (!phone) return;
 
@@ -104,7 +88,7 @@ form.addEventListener("submit", async (e) => {
       phone_number: phone,
       task: task || defaultPayload.task,
       prosody_rate: prosodyRate
-    }, claimValues);
+    });
 
     const res = await postCall(payload);
     out.textContent = (res.ok ? "" : "Fehler ") + "(" + res.status + "):\n" + JSON.stringify(res.data, null, 2);

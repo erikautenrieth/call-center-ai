@@ -24,7 +24,7 @@
       <form id="f" class="two-cards-form">
         <!-- LEFT SECTION -->
         <section class="card">
-          <h2>Outbound Call</h2>
+          <h2>Konfiguration</h2>
           <label for="phone">Telefonnummer</label>
           <input id="phone" name="phone" type="tel" placeholder="+49777888777" required pattern="^\+[0-9]{6,15}$" />
           <label for="voiceSelect">Stimme</label>
@@ -65,14 +65,9 @@
 
         <!-- MIDDLE SECTION -->
         <section class="card">
-          <h2>Konfiguration</h2>
+          <h2>Outbound Call</h2>
           <label for="task">Task</label>
           <textarea id="task" name="task" placeholder="Beschreibe die Aufgabe für den Bot." maxlength="2000" rows="4"></textarea>
-
-          <label for="ratenzahlung">Ratenzahlung</label>
-          <input id="ratenzahlung" name="ratenzahlung" type="text" placeholder="Ja oder Nein" />
-          <label for="ratenhoehe">Höhe der Raten</label>
-          <input id="ratenhoehe" name="ratenhoehe" type="text" placeholder="z.B. 50€" />
 
           <button id="btn" type="submit">Start</button>
           <pre id="out" aria-live="polite" role="status"></pre>

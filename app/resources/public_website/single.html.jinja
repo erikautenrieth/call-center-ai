@@ -217,7 +217,7 @@ Claim ({{ call.initiate.phone_number }})
           },
           {
             'title': 'Zahlungsbeginn',
-            'value': call.claim.zahlungsbeginn.strftime('%a %d %b %Y, %H:%M (%Z)') if call.claim.zahlungsbeginn else 'N/A'
+            'value': call.claim.zahlungsbeginn or 'N/A'
           }
         ]
       %}

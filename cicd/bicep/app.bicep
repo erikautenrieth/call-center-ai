@@ -996,17 +996,17 @@ resource assignmentAppConfigurationDataReader 'Microsoft.Authorization/roleAssig
 
 resource configValues 'Microsoft.AppConfiguration/configurationStores/keyValues@2023-03-01' = [
   for item in items({
-    answer_hard_timeout_sec: 25 // 15 = default
-    answer_soft_timeout_sec: 6 // 4 = default
+    answer_hard_timeout_sec: 15 // 15 = default
+    answer_soft_timeout_sec: 4 // 4 = default
     callback_timeout_hour: 3 // 3 = default
     phone_silence_timeout_sec: 20 // 20 = default
     recognition_retry_max: 2 // 2 = default
-    recognition_stt_complete_timeout_ms: 300 // 100 = default
+    recognition_stt_complete_timeout_ms: 100 // 100 = default
     recording_enabled: false // Disable by default for privacy reasons
     slow_llm_for_chat: false // Use the fast LLM for chat by default
-    vad_cutoff_timeout_ms: 500 // 250 = default
-    vad_silence_timeout_ms: 600 // 500 = default
-    vad_threshold: '0.4' // 0.5 = default
+    vad_cutoff_timeout_ms: 250 // 250 = default
+    vad_silence_timeout_ms: 500 // 500 = default
+    vad_threshold: '0.5' // 0.5 = default
   }): {
     parent: configStore
     name: item.key
