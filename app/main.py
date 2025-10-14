@@ -309,19 +309,24 @@ async def report_single_get(call_id: UUID) -> HTMLResponse:
         )
 
     template = _jinja.get_template("single.html.jinja")
-    render = await template.render_async(
-        applicationinsights_connection_string=getenv(
-            "APPLICATIONINSIGHTS_CONNECTION_STRING"
-        ),
-        bot_company=call.initiate.bot_company,
-        bot_name=call.initiate.bot_name,
-        bot_phone_number=CONFIG.communication_services.phone_number,
-        call=call,
-        next_actions=[action for action in NextActionEnum],
-        version=CONFIG.version,
-    )
-    render = html_minify(render)  # Minify HTML
-    return HTMLResponse(content=render, status_code=HTTPStatus.OK)
+    try:
+        render = await template.render_async(
+            applicationinsights_connection_string=getenv(
+                "APPLICATIONINSIGHTS_CONNECTION_STRING"
+            ),
+            bot_company=call.initiate.bot_company,
+            bot_name=call.initiate.bot_name,
+            bot_phone_number=CONFIG.communication_services.phone_number,
+            call=call,
+            next_actions=[action for action in NextActionEnum],
+            version=CONFIG.version,
+        )
+        render = html_minify(render)  # Minify HTML
+        return HTMLResponse(content=render, status_code=HTTPStatus.OK)
+    except Exception as e:
+        logger.error(e)
+        return HTMLResponse(status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
+    # return HTMLResponse(content=render, status_code=HTTPStatus.OK)
 
 
 @api.get("/call")
