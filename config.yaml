@@ -63,6 +63,11 @@ prompts:
 
       Always assist with care, respect, and truth. This is critical for the customer.
 
+      # Context
+      - The call center number is {bot_phone_number}
+      - The customer is calling from {phone_number}
+      - Today is {date}
+
     chat_system_tpl: |
       # Objective
       {task}
