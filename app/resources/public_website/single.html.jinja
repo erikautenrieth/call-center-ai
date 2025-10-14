@@ -12,11 +12,11 @@ Claim ({{ call.initiate.phone_number }})
 <header class="col-span-full mx-4 mb-4">
   <div class="my-4 text-neutral-600 dark:text-neutral-400">
     <a class="hover:underline" href="/report?phone_number={{ call.initiate.phone_number | quote_plus }}">
-      ⬅&nbsp;&nbsp;Go back to your call history
+      ⬅&nbsp;&nbsp;Zurück zum Anrufverlauf
     </a>
   </div>
 
-  <h1>Hello {{ (call.claim.nachname | title) if call.claim.nachname else '' }}&nbsp;&nbsp;👋🏻</h1>
+  <h1>Hallo Herr {{ (call.claim.nachname | title) if call.claim.nachname else '' }}&nbsp;&nbsp;👋🏻</h1>
   <p class="text-2xl">{{ (' ' ~ call.synthesis.short | lower) if call.synthesis.short }}.</p>
 </header>
 
@@ -37,7 +37,7 @@ Claim ({{ call.initiate.phone_number }})
 <!-- Conversation -->
 <div class="col-start-1 col-end-5 order-last lg:order-none">
   <div class="p-4 space-y-4 rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
-    <h2 class="text-lg">💬&nbsp;&nbsp;Conversation</h2>
+    <h2 class="text-lg">💬&nbsp;&nbsp;Gesprächsverlauf</h2>
 
     <!-- Agent and customer -->
     <div class="overflow-hidden space-y-6">
@@ -99,7 +99,7 @@ Claim ({{ call.initiate.phone_number }})
 <div class="col-start-5 col-end-7 space-y-4">
   <!-- Reminders -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
-    <h2 class="text-lg">⏰&nbsp;&nbsp;Reminders</h2>
+    <h2 class="text-lg">⏰&nbsp;&nbsp;Erinnerungen</h2>
 
     {% if not call.reminders %}
     <p class="text-neutral-600 dark:text-neutral-400">No reminder yet.</p>
@@ -119,7 +119,7 @@ Claim ({{ call.initiate.phone_number }})
 
   <!-- Next actions -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
-    <h2 class="text-lg">📥&nbsp;&nbsp;Next action</h2>
+    <h2 class="text-lg">📥&nbsp;&nbsp;Nächste Aktion</h2>
 
     {% if not call.next %}
     <p class="text-neutral-600 dark:text-neutral-400">No further action for the moment.</p>
@@ -145,7 +145,7 @@ Claim ({{ call.initiate.phone_number }})
 
   <!-- Analysis -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
-    <h2 class="text-lg px-4 pt-4">🔎&nbsp;&nbsp;Analysis</h2>
+    <h2 class="text-lg px-4 pt-4">🔎&nbsp;&nbsp;Analyse </h2>
 
     {% if not call.synthesis %}
     <p class="p-4 text-neutral-600 dark:text-neutral-400">No analysis for the moment.</p>
@@ -155,11 +155,11 @@ Claim ({{ call.initiate.phone_number }})
         {%
           set details = [
             {
-              'title': 'Satisfaction',
-              'value': ('🔴' if call.synthesis.satisfaction == 'terrible' else '🟠' if call.synthesis.satisfaction == 'low' else '🟢' if call.synthesis.satisfaction == 'partial' else '❤️' if call.synthesis.satisfaction == 'high' else '⚪️' if call.synthesis.satisfaction == 'unknow' ) ~ ' (' ~ call.synthesis.satisfaction.value ~ ')'
+              'title': 'Zufriedenheit',
+              'value': ('🔴' if call.synthesis.satisfaction == 'ungenügend' else '🟠' if call.synthesis.satisfaction == 'niedrig' else '🟢' if call.synthesis.satisfaction == 'teilweise' else '❤️' if call.synthesis.satisfaction == 'hoch' else '⚪️' if call.synthesis.satisfaction == 'unbekannt' ) ~ ' (' ~ call.synthesis.satisfaction.value ~ ')'
             },
             {
-              'title': 'Improvement',
+              'title': 'Verbesserungsvorschlag',
               'value': call.synthesis.improvement_suggestions
             }
           ]
@@ -183,9 +183,13 @@ Claim ({{ call.initiate.phone_number }})
       <tbody>
       {%
         set details = [
-            {
-            'title': 'Name',
-            'value': ((call.claim.vorname or '') ~ ' ' ~ (call.claim.nachname or '')).strip() or 'N/A'
+          {
+            'title': 'Vorname',
+            'value': call.claim.vorname or 'N/A'
+          },
+          {
+            'title': 'Nachname',
+            'value': call.claim.nachname or 'N/A'
           },
           {
             'title': 'Kennzeichen',
