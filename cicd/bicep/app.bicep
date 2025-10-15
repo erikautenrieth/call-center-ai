@@ -1006,7 +1006,7 @@ resource configValues 'Microsoft.AppConfiguration/configurationStores/keyValues@
     slow_llm_for_chat: false // Use the fast LLM for chat by default
     vad_cutoff_timeout_ms: 250 // 250 = default
     vad_silence_timeout_ms: 500 // 500 = default
-    vad_threshold: '0.5' // 0.5 = default
+    vad_threshold: '0.7' // 0.5 = default
   }): {
     parent: configStore
     name: item.key
