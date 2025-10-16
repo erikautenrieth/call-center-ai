@@ -239,7 +239,7 @@ resource containerApp 'Microsoft.App/containerApps@2024-02-02-preview' = {
     template: {
       containers: [
         {
-          image: 'ghcr.io/erikautenrieth/call-center-ai:${imageVersion}'
+          image: 'ghcr.io/microsoft/call-center-ai:${imageVersion}'
           name: 'call-center-ai'
           env: [
             // App configuration

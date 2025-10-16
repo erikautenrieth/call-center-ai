@@ -514,7 +514,7 @@
                 "template": {
                   "containers": [
                     {
-                      "image": "[format('ghcr.io/erikautenrieth/call-center-ai:{0}', parameters('imageVersion'))]",
+                      "image": "[format('ghcr.io/microsoft/call-center-ai:{0}', parameters('imageVersion'))]",
                       "name": "call-center-ai",
                       "env": [
                         {
