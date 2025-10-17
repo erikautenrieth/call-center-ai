@@ -97,51 +97,6 @@ Claim ({{ call.initiate.phone_number }})
 </div>
 
 <div class="col-start-5 col-end-7 space-y-4">
-  <!-- Reminders -->
-  <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
-    <h2 class="text-lg">⏰&nbsp;&nbsp;Erinnerungen</h2>
-
-    {% if not call.reminders %}
-    <p class="text-neutral-600 dark:text-neutral-400">No reminder yet.</p>
-    {% else %}
-    <div class="space-y-6">
-      {% for reminder in call.reminders | sort(attribute='due_date_time') %}
-      <div>
-        <div class="text-xs">
-          {{ reminder.owner | title }}<span class="text-neutral-600 dark:text-neutral-400">, {{ reminder.due_date_time.astimezone(call.tz()).strftime('%a %d %b %Y, %H:%M (%Z)') }}</span>
-        </div>
-        <p class="text-neutral-600 dark:text-neutral-400">{{ reminder.title | capitalize }}</p>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-
-  <!-- Next actions -->
-  <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
-    <h2 class="text-lg">📥&nbsp;&nbsp;Nächste Aktion</h2>
-
-    {% if not call.next %}
-    <p class="text-neutral-600 dark:text-neutral-400">No further action for the moment.</p>
-    {% else %}
-    <ul>
-      {% for action in next_actions | sort %}
-      {% if action.value == call.next.action.value %}
-      <li>
-        {{ action.value | replace("_", " " ) | capitalize }}
-      </li>
-      {% else %}
-      <li class="text-xs text-neutral-600 dark:text-neutral-400">
-        {{ action.value | replace("_", " " ) | capitalize }}
-      </li>
-      {% endif %}
-      {% endfor %}
-    </ul>
-    {% endif %}
-    <p class="text-neutral-600 dark:text-neutral-400">
-      {{ call.next.justification }}
-    </p>
-  </div>
 
   <!-- Analysis -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
@@ -232,6 +187,53 @@ Claim ({{ call.initiate.phone_number }})
     </table>
   </div>
 
+ <!-- Reminders -->
+  <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
+    <h2 class="text-lg">⏰&nbsp;&nbsp;Erinnerungen</h2>
+
+    {% if not call.reminders %}
+    <p class="text-neutral-600 dark:text-neutral-400">No reminder yet.</p>
+    {% else %}
+    <div class="space-y-6">
+      {% for reminder in call.reminders | sort(attribute='due_date_time') %}
+      <div>
+        <div class="text-xs">
+          {{ reminder.owner | title }}<span class="text-neutral-600 dark:text-neutral-400">, {{ reminder.due_date_time.astimezone(call.tz()).strftime('%a %d %b %Y, %H:%M (%Z)') }}</span>
+        </div>
+        <p class="text-neutral-600 dark:text-neutral-400">{{ reminder.title | capitalize }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Next actions -->
+  <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
+    <h2 class="text-lg">📥&nbsp;&nbsp;Nächste Aktion</h2>
+
+    {% if not call.next %}
+    <p class="text-neutral-600 dark:text-neutral-400">No further action for the moment.</p>
+    {% else %}
+    <ul>
+      {% for action in next_actions | sort %}
+      {% if action.value == call.next.action.value %}
+      <li>
+        {{ action.value | replace("_", " " ) | capitalize }}
+      </li>
+      {% else %}
+      <li class="text-xs text-neutral-600 dark:text-neutral-400">
+        {{ action.value | replace("_", " " ) | capitalize }}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <p class="text-neutral-600 dark:text-neutral-400">
+      {{ call.next.justification }}
+    </p>
+  </div>
+
+
   <!-- Task -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
     <h2 class="text-lg">🫡&nbsp;&nbsp;Task</h2>
@@ -240,4 +242,21 @@ Claim ({{ call.initiate.phone_number }})
     </p>
   </div>
 </div>
+
+<div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
+  <h2 class="text-lg px-4 pt-4">📁&nbsp;&nbsp;Details</h2>
+  <table class="table-auto w-full">
+    <tbody>
+      {% for claim in claim_definitions %}
+        {% set value = call.claim[claim.name] if call.claim[claim.name] is defined else 'N/A' %}
+        <tr {% if not loop.last %}class="border-b border-neutral-200/60 dark:border-neutral-700/60"{% endif %}>
+          <td class="p-4 text-neutral-600 dark:text-neutral-400">{{ claim.description }}</td>
+          <td class="p-4">{{ value }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
 {% endblock %}

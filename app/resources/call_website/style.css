@@ -38,10 +38,13 @@ body::before {
 /* Container Grid */
 .container {
   display: grid;
-  grid-template-columns: 1.4fr 2fr 1fr;
+  grid-template-columns: 1.3fr 2.8fr 0.5fr; /* mittlere Spalte deutlich breiter */
   gap: 1.8rem;
   padding: 2.5rem;
   align-items: start;
+  width: 100vw;              /* nutzt gesamte Seitenbreite */
+  max-width: 100%;           /* verhindert Begrenzung */
+  box-sizing: border-box;    /* Padding fließt in Breite ein */
 }
 
 /* Form über zwei Cards */
@@ -59,6 +62,9 @@ body::before {
   border: 1px solid var(--border);
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card textarea {
@@ -223,4 +229,118 @@ aside.card {
   h1 {
     font-size: 1.8em;
   }
+}
+
+.card textarea#task {
+  width: 100%;
+  min-height: 380px;
+  resize: vertical;
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  font-family: 'Open Sans', Arial, sans-serif;
+  box-shadow: 0 3px 12px rgba(16, 24, 40, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.card textarea#task:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.top-right {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+  }
+
+
+/* Rechte Card: nicht mehr winzig, vernünftiger Innenabstand */
+aside.card {
+min-width: 320px;
+height: auto;
+display: flex;
+flex-direction: column;
+gap: 0.9rem;
+}
+
+/* Claim-Liste schön und scrollfähig */
+#claim-fields {
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+max-height: 48vh;
+overflow-y: auto;
+padding-right: 4px;
+border-top: 1px solid var(--border);
+margin-top: 0.4rem;
+}
+.claim-row {
+background: #ffffff;
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 10px 12px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 0.8rem;
+box-shadow: 0 2px 6px rgba(16, 24, 40, 0.06);
+}
+.claim-row label { display: flex; gap: 0.6rem; }
+.claim-row small { display: block; color: var(--muted); }
+.claim-row button { background: transparent; border: none; color: #e11d48; cursor: pointer; }
+
+/* ========== Aside-Form-Grid: 2 Spalten + Add-Button volle Breite ========== */
+aside.card .grid:first-of-type {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0.6rem;
+}
+#add-claim {
+grid-column: 1 / -1;
+white-space: nowrap;
+background: var(--primary);
+color: var(--button-text);
+border: none;
+border-radius: 8px;
+padding: 10px 14px;
+font-weight: 600;
+}
+
+/* Aktions-Buttons versetzt, nicht gequetscht */
+aside.card .grid:last-of-type {
+display: flex;
+gap: 0.6rem;
+flex-wrap: wrap;
+}
+aside.card .grid:last-of-type button {
+background: #f8fafc;
+border: 1px solid var(--border);
+border-radius: 8px;
+padding: 10px 12px;
+font-weight: 600;
+white-space: nowrap;
+}
+
+/* Headings vereinheitlichen */
+.card h3, .card h4 {
+font-size: 1.1rem;
+font-weight: 700;
+margin: 0 0 0.6rem 0;
+color: var(--card-header);
+}
+
+/* Responsive: unter 1000px auf 1 Spalte */
+@media (max-width: 1000px) {
+.container { grid-template-columns: 1fr; }
+aside.card .grid:first-of-type { grid-template-columns: 1fr; }
 }
