@@ -269,10 +269,20 @@ Claim ({{ call.initiate.phone_number }})
   <!-- Task -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60 p-4 space-y-4">
     <h2 class="text-lg">🫡&nbsp;&nbsp;Task</h2>
-    <p class="text-neutral-600 dark:text-neutral-400 line-clamp-15">
+    <p class="text-neutral-600 dark:text-neutral-400 clamp-15">
       {{ call.initiate.task }}
     </p>
   </div>
+  <style>
+  .clamp-15 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 15; /* Anzahl der Zeilen */
+    overflow: hidden;
+  }
+</style>
+
+
 </div>
 
 
