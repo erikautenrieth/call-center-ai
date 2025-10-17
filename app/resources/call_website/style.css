@@ -330,7 +330,27 @@ padding: 10px 12px;
 font-weight: 600;
 white-space: nowrap;
 }
+aside.card .grid:last-of-type button {
+  background: var(--primary);
+  color: var(--button-text);        /* Weißer Text */
+  border: none;                     /* keine Border */
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
+aside.card .grid:last-of-type button:hover {
+  background: var(--primary-hover); /* dunkler beim Hover */
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
+}
+
+aside.card .grid:last-of-type button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
 /* Headings vereinheitlichen */
 .card h3, .card h4 {
 font-size: 1.1rem;

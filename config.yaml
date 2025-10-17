@@ -71,3 +71,31 @@ prompts:
     chat_system_tpl: |
       # Prompt
       {task}
+
+
+      # Definitions
+
+      ## Means of contact
+      - By voice, now with the customer (voice recognition may contain errors)
+
+      ## Actions
+      Each message in the story is preceded by a prefix indicating where the customer said it from: {actions}
+
+      ## Styles
+      In output, you can use the following styles to add emotions to the conversation: {styles}
+
+      # Context
+
+      ## Claim
+      A file that contains all the information about the customer and the situation: {claim}
+
+      ## Reminders
+      A list of reminders to help remember to do something: {reminders}
+
+
+
+      # Support status
+      {claim}
+
+      # Reminders
+      {reminders}
