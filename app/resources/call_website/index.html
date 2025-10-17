@@ -80,25 +80,23 @@
       <!-- RIGHT SECTION bleibt außen -->
 
         <aside class="card">
-     <h4>Neues Feld hinzufügen</h4>
-      <div class="grid">
-        <input id="new-claim-description" type="text" placeholder="Beschreibung (z. B. Vorname des Schuldners)">
-        <input id="new-claim-name" type="text" placeholder="Technischer Name (z. B. vorname)">
-        <select id="new-claim-type">
-          <option value="text" selected>Text</option>
-          <option value="phone_number">Telefonnummer</option>
-          <option value="datetime">Datum/Zeit</option>
-        </select>
-        <button id="add-claim" type="button">Hinzufügen</button>
-      </div>
-      <div class="grid" style="margin-top: .5rem">
-        <button id="select-all" type="button">Alle auswählen</button>
-        <button id="deselect-all" type="button">Alle abwählen</button>
-        <button id="reset-claims" type="button">Standard wiederherstellen</button>
-      </div>
+        <h4>Neues Feld hinzufügen</h4>
+          <div class="grid">
+            <input id="new-claim-description" type="text" placeholder="Beschreibung (z. B. Vorname des Schuldners)">
+            <input id="new-claim-name" type="text" placeholder="Technischer Name (z. B. vorname)">
+            <select id="new-claim-type">
+              <option value="text" selected>Text</option>
+              <option value="phone_number">Telefonnummer</option>
+              <option value="datetime">Datum/Zeit</option>
+            </select>
+            <button id="add-claim" type="button">Hinzufügen</button>
+          </div>
+            <button id="select-all" type="button">Alle auswählen</button>
+            <button id="deselect-all" type="button">Alle abwählen</button>
+            <button id="reset-claims" type="button">Standard wiederherstellen</button>
+          <div id="claims-list" style="margin-top: 1rem;"></div>
       </aside>
     </div>
-
     <script src="./app.js"></script>
   </body>
 </html>

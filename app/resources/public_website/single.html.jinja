@@ -98,6 +98,37 @@ Claim ({{ call.initiate.phone_number }})
 
 <div class="col-start-5 col-end-7 space-y-4">
 
+  <!-- Details Outbound-->
+    <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
+      <h2 class="text-lg px-4 pt-4">📁&nbsp;&nbsp;Details (Outbound)</h2>
+      <table class="table-auto w-full">
+        <tbody>
+          {% set claim = call.claim or {} %} {% set order = claim_definitions|default([])|map(attribute='name')|list %}
+            {% for key in order %}
+              {% set value = claim[key] if key in claim else none %}
+              {% set title = (claim_definitions
+                              | selectattr('name','equalto', key)
+                              | map(attribute='description')
+                              | first) or (key|replace('_',' ')|title) %}
+              <tr class="border-b border-neutral-200/60 dark:border-neutral-700/60">
+                <td class="p-4 text-neutral-600 dark:text-neutral-400">{{ title }}</td>
+                <td class="p-4">{{ (value if value not in [none, ''] else 'N/A') }}</td>
+              </tr>
+            {% endfor %}
+            {% for key, value in claim.items() %}
+              {% if key not in order %}
+                <tr {% if not loop.last %}class="border-b border-neutral-200/60 dark:border-neutral-700/60"{% endif %}>
+                  <td class="p-4 text-neutral-600 dark:text-neutral-400">{{ key|replace('_',' ')|title }}</td>
+                  <td class="p-4">{{ (value if value not in [none, ''] else 'N/A') }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+
+
   <!-- Details -->
   <div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
     <h2 class="text-lg px-4 pt-4">📁&nbsp;&nbsp;Details</h2>
@@ -244,33 +275,6 @@ Claim ({{ call.initiate.phone_number }})
   </div>
 </div>
 
-<div class="rounded-md lg:ring-1 ring-neutral-200/60 dark:ring-neutral-700/60">
-  <h2 class="text-lg px-4 pt-4">📁&nbsp;&nbsp;Details</h2>
-  <table class="table-auto w-full">
-    <tbody>
-      {% set claim = call.claim or {} %} {% set order = claim_definitions|default([])|map(attribute='name')|list %}
-        {% for key in order %}
-          {% set value = claim[key] if key in claim else none %}
-          {% set title = (claim_definitions
-                          | selectattr('name','equalto', key)
-                          | map(attribute='description')
-                          | first) or (key|replace('_',' ')|title) %}
-          <tr class="border-b border-neutral-200/60 dark:border-neutral-700/60">
-            <td class="p-4 text-neutral-600 dark:text-neutral-400">{{ title }}</td>
-            <td class="p-4">{{ (value if value not in [none, ''] else 'N/A') }}</td>
-          </tr>
-        {% endfor %}
-        {% for key, value in claim.items() %}
-          {% if key not in order %}
-            <tr {% if not loop.last %}class="border-b border-neutral-200/60 dark:border-neutral-700/60"{% endif %}>
-              <td class="p-4 text-neutral-600 dark:text-neutral-400">{{ key|replace('_',' ')|title }}</td>
-              <td class="p-4">{{ (value if value not in [none, ''] else 'N/A') }}</td>
-            </tr>
-          {% endif %}
-        {% endfor %}
-    </tbody>
-  </table>
-</div>
 
 
 {% endblock %}

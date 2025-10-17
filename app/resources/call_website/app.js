@@ -28,6 +28,27 @@ const defaultPayload = {
   ]
 };
 
+
+function renderClaims() {
+  const container = document.getElementById("claims-list");
+  const claims = JSON.parse(localStorage.getItem("claims") || JSON.stringify(defaultPayload.claim));
+
+  if (!claims.length) {
+    container.innerHTML = "<p>Keine Felder definiert.</p>";
+    return;
+  }
+
+  container.innerHTML = claims
+    .map((claim, idx) => `
+      <label>
+        <input type="checkbox" class="claim-checkbox" data-index="${idx}" checked>
+        ${claim.description} <small style="color:gray;">(${claim.name}, ${claim.type})</small>
+      </label>
+    `).join("");
+}
+
+renderClaims();
+
 const form = document.getElementById("f");
 const phoneInput = document.getElementById("phone");
 const taskInput = document.getElementById("task");
@@ -37,18 +58,31 @@ const out = document.getElementById("out");
 const btn = document.getElementById("btn");
 
 document.getElementById('add-claim').onclick = () => {
-const d = document.getElementById('new-claim-description').value.trim();
-const n = (document.getElementById('new-claim-name').value.trim() || d.toLowerCase().replace(/\s+/g,'_'));
-const t = document.getElementById('new-claim-type').value;
-if (!d) return alert('Beschreibung fehlt.');
-const arr = JSON.parse(localStorage.getItem('claims') || '[]');
-arr.push({ description: d, name: n, type: t });
-localStorage.setItem('claims', JSON.stringify(arr));
-document.getElementById('new-claim-description').value = '';
-document.getElementById('new-claim-name').value = '';
-document.getElementById('new-claim-type').value = 'text';
+  const d = document.getElementById('new-claim-description').value.trim();
+  const n = (document.getElementById('new-claim-name').value.trim() || d.toLowerCase().replace(/\s+/g,'_'));
+  const t = document.getElementById('new-claim-type').value;
+  if (!d) return alert('Beschreibung fehlt.');
+  const arr = JSON.parse(localStorage.getItem('claims') || '[]');
+  arr.push({ description: d, name: n, type: t });
+  localStorage.setItem('claims', JSON.stringify(arr));
+  document.getElementById('new-claim-description').value = '';
+  document.getElementById('new-claim-name').value = '';
+  document.getElementById('new-claim-type').value = 'text';
+  renderClaims();
 };
-document.getElementById('reset-claims')?.onclick = () => localStorage.removeItem('claims');
+document.getElementById("select-all")?.addEventListener("click", () => {
+  document.querySelectorAll(".claim-checkbox").forEach(cb => cb.checked = true);
+});
+
+document.getElementById("deselect-all")?.addEventListener("click", () => {
+  document.querySelectorAll(".claim-checkbox").forEach(cb => cb.checked = false);
+});
+
+document.getElementById("reset-claims")?.addEventListener("click", () => {
+  localStorage.removeItem("claims");
+  renderClaims();
+});
+
 
 
 function buildPayload(overrides = {}) {
@@ -91,8 +125,13 @@ form.addEventListener("submit", async (e) => {
   const task = (taskInput?.value || "").trim();
   const prosodyRate = Math.max(0.75, Math.min(prosodyRateInput.value, 1.25));
 
-  const ls = JSON.parse(localStorage.getItem('claims') || '[]');
-  const selectedClaims = ls.length ? ls : defaultPayload.claim;
+  const allClaims = JSON.parse(localStorage.getItem("claims") || JSON.stringify(defaultPayload.claim));
+
+  const selectedClaimIndexes = Array.from(document.querySelectorAll(".claim-checkbox"))
+    .map((cb, idx) => cb.checked ? idx : -1)
+    .filter(idx => idx !== -1);
+
+  const selectedClaims = selectedClaimIndexes.map(i => allClaims[i]);
 
   if (!phone) return;
 
